@@ -1,0 +1,97 @@
+Winform app : Quản lí thư viện 
+
+Phân quyền : 
+	- user 
+	- admin
+
+Giao diện Login ( gồm tài khoản - mật khẩu )
+	- đăng nhập ( hiển thị mật khẩu )
+	- đăng kí
+	- quên mật khẩu
+	
+Giao diện chính 
+* admin 
+	- hiện các thống kê mượn trả, doanh thu
+	- Xem danh sách user -> xem thông tin chi tiết từng user 
+					+ xem lịch sử mượn trả 
+					+ xem ngày hết hạn thành viên
+	- Thêm thành viên, xóa thành viên, khóa tk thành viên, phạt thành viên quá hạn 
+		trả sách ( 2000/ ngày)
+	- 
+	
+* user
+
++++ user chưa đăng kí thành viên
+		- tra cứu sách ( biết dc thông tin sách , vị trí kệ để, tình trạng mượn ) 
+		- ko dc mượn sách đem về
++++ user đã đăng kí thành viên
+		- được mượn sách đem về
+	- đăng kí trở thành thành viên theo tháng or năm ( thanh toán = thẻ )
+		=> cung cấp thông tin cá nhân ( sdt , dia chỉ , dia chỉ mail, sdt người, đại diện, ... )
+
+(báo tài khoản sắp hết hạn -> đưa link gia hạn YESNO) 
+----------------------------------------------------------------------------------------------------------------------------
+
+********************** Doc Gia **********************
+idUser : (mssv / mshv / mgv / manv // tt admin)
+Họ : 
+Tên Đệm : 
+Họ và tên : 
+Ngày sinh (date): 
+Email : 
+SĐT : 
+CCCD / CMND (unique) : 
+So the thu vien : 
+Số thẻ ngân hàng (unique) ( nếu có ) :
+mod : nhan vien / nguoi quan li / doc gia ( sinh vien, giang vien, other )
+
+
+********************** SÁCH : **********************
+idSach(int) : 
+Tên sách : 
+Tên tác giả : 
+người thêm : 
+so luong sach: 
+updateat: (date)
+
+********************** History : Mượn **********************
+idHisToryMuon: 
+Số thẻ thư viện ( FK ) :
+Số sách mượn (max 3): trigger
+Ngày mượn : 
+Ngày hết hạn : ( default ngày mượn + 7 );
+số lần gia hạn (max 2 integer): Mỗi lần 3 ngày ( ngày hết hạn + 3)
+
+********************** DETAILS MUon sach **********************
+idDetails (int) : 
+idHistory ( FK )
+id sach : 
+số lượng : (update sl bên sách)
+updateat : 
+
+********************** Tra Sach **********************
+id : (int); 
+idDetails: (FK) (delete
+slSachTra : (< slMuonSach ? updateSlSach : delete in details)
+ngaytra: (date)
+soTienPhat : ( 3 ngày 10k 7 ngày 30k > 7 ngày 100k )
+updateAt :  
+
+********************** Thời hạn thẻ thư viện **********************
+số thẻ ( PK default : uuid-genarate) (tài khoản đăng nhập trên web) : 
+mssv/msgv/mshv/macanbo/msnhanvien
+idUser : (FK)
+Mật khẩu : 
+Avatar : "Link".
+Thời hạn (int) : (1/ Tuần. 2/ Tháng. 3/ Năm. 4/ Always) 
+Ngày đăng ký : (default toDay)
+Ngày hết hạn : (1/ toDay + 7. 2/ toDay + 30. 3/ toDay + 365) -> check Tháng + 1 ( 31/1/2023 -> 31/2/2023 ) NULL
+
+
+
+********************** Loại thẻ thư viện **********************
+id : (int) 
+Loại : (tuần , tháng, năm, staff(alway) -> 1 2 3 4)
+updateat (default: date ) : 
+
+	
