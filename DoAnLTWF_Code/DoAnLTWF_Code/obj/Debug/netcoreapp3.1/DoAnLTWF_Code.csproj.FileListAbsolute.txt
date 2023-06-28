@@ -4,7 +4,6 @@ C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\D
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\DoAnLTWF_Code.runtimeconfig.dev.json
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\DoAnLTWF_Code.dll
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\DoAnLTWF_Code.pdb
-C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.csproj.AssemblyReference.cache
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.frmDangNhap.resources
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.csproj.GenerateResource.cache
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.GeneratedMSBuildEditorConfig.editorconfig
@@ -45,3 +44,18 @@ C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\D
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.Properties.Resources.resources
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.frmDangKy.resources
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.frmAdmin.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.frmSinhVien.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.ListBookUC.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.ChiTietSach.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.YeuCauThemSach.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.SVMuonSach.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.AddUser.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.AddMutiBook.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\EPPlus.Core.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll

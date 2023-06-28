@@ -1,0 +1,194 @@
+USE [QuanLyThuVien]
+GO
+INSERT [dbo].[Mode] ([idMode], [Role]) VALUES (N'1', N'ADMIN')
+GO
+INSERT [dbo].[Mode] ([idMode], [Role]) VALUES (N'2', N'EMPLOYEE')
+GO
+INSERT [dbo].[Mode] ([idMode], [Role]) VALUES (N'3', N'READER')
+GO
+INSERT [dbo].[Mode] ([idMode], [Role]) VALUES (N'4', N'ORTHER')
+GO
+INSERT [dbo].[Mode] ([idMode], [Role]) VALUES (N'5', N'ORTHER1')
+GO
+INSERT [dbo].[Mode] ([idMode], [Role]) VALUES (N'6', N'ORTHER2')
+GO
+INSERT [dbo].[Mode] ([idMode], [Role]) VALUES (N'7', N'ALL1')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'1', N'Minh', N'Nguyễn', CAST(N'2003-05-15' AS Date), N'nvmttq@gmail.com', N'2222222222', NULL, N'1')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'2', N'Minh1', N'Nguyễn', CAST(N'2003-05-15' AS Date), N'minh1@gmail.com', N'2312312355', N'65001', N'2')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'3', N'MinhReader', N'Nguyễn', CAST(N'2003-05-15' AS Date), N'reader@gmail.com', N'3333333333', N'650011', N'3')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID1', N'John', N'Doe', CAST(N'1990-01-01' AS Date), N'john.doe@example.com', N'1234567890', N'Bank1', N'1')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID10', N'Amanda', N'Wilson', CAST(N'1997-11-05' AS Date), N'amanda.wilson@example.com', N'7777777777', N'Bank10', N'4')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID11', N'Matthew', N'Clark', CAST(N'1989-04-14' AS Date), N'matthew.clark@example.com', N'8888888888', N'Bank11', N'5')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID12', N'Olivia', N'Martin', CAST(N'1995-10-22' AS Date), N'olivia.martin@example.com', N'1212121212', N'Bank12', N'6')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID13', N'Daniel', N'Miller', CAST(N'1992-01-03' AS Date), N'daniel.miller@example.com', N'3434343434', N'Bank13', N'1')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID14', N'Sophia', N'Harris', CAST(N'1986-06-18' AS Date), N'sophia.harris@example.com', N'5656565656', N'Bank14', N'2')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID15', N'James', N'Wilson', CAST(N'1999-09-27' AS Date), N'james.wilson@example.com', N'7878787878', N'Bank15', N'3')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID16', N'Elizabeth', N'King', CAST(N'1988-12-08' AS Date), N'elizabeth.king@example.com', N'9090909090', N'Bank16', N'4')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID2', N'Jane', N'Smith', CAST(N'1992-05-10' AS Date), N'jane.smith@example.com', N'9876543210', N'Bank2', N'2')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID3', N'Michael', N'Johnson', CAST(N'1985-08-15' AS Date), N'michael.johnson@example.com', N'5555555555', N'Bank3', N'3')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID4', N'Emily', N'Brown', CAST(N'1998-12-20' AS Date), N'emily.brown@example.com', N'9999999999', N'Bank4', N'4')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID5', N'David', N'Taylor', CAST(N'1994-03-25' AS Date), N'david.taylor@example.com', N'1111111111', N'Bank5', N'5')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID6', N'Sarah', N'Wilson', CAST(N'1991-06-12' AS Date), N'sarah.wilson@example.com', N'2222224222', N'Bank6', N'6')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID7', N'Robert', N'Anderson', CAST(N'1987-09-30' AS Date), N'robert.anderson@example.com', N'3334333333', N'Bank7', N'1')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID8', N'Jennifer', N'Lee', CAST(N'1996-02-08' AS Date), N'jennifer.lee@example.com', N'4444444444', N'Bank8', N'2')
+GO
+INSERT [dbo].[ThanhVien] ([idThanhVien], [Fname], [Lname], [Birthday], [Email], [Phone], [Bank], [Mode]) VALUES (N'ID9', N'Christopher', N'Moore', CAST(N'1993-07-17' AS Date), N'christopher.moore@example.com', N'6666666666', N'Bank9', N'3')
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'1', N'ID1', N'1234567890', CAST(N'1990-01-01T00:00:00.000' AS DateTime), CAST(N'1990-01-01T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'10', N'ID3', N'5555555555', CAST(N'1985-08-15T00:00:00.000' AS DateTime), CAST(N'1985-08-15T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'11', N'ID4', N'9999999999', CAST(N'1998-12-20T00:00:00.000' AS DateTime), CAST(N'1998-12-20T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'12', N'ID5', N'1111111111', CAST(N'1994-03-25T00:00:00.000' AS DateTime), CAST(N'1994-03-25T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'13', N'ID6', N'2222224222', CAST(N'1991-06-12T00:00:00.000' AS DateTime), CAST(N'1991-06-12T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'14', N'ID7', N'3334333333', CAST(N'1987-09-30T00:00:00.000' AS DateTime), CAST(N'1987-09-30T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'15', N'ID8', N'4444444444', CAST(N'1996-02-08T00:00:00.000' AS DateTime), CAST(N'1996-02-08T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'16', N'ID9', N'6666666666', CAST(N'1993-07-17T00:00:00.000' AS DateTime), CAST(N'1993-07-17T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'2', N'ID10', N'7777777777', CAST(N'1997-11-05T00:00:00.000' AS DateTime), CAST(N'1997-11-05T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'22498', N'3', N'concun123', CAST(N'2023-05-30T20:46:44.100' AS DateTime), CAST(N'3000-12-12T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'3', N'ID11', N'8888888888', CAST(N'1989-04-14T00:00:00.000' AS DateTime), CAST(N'1989-04-14T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'4', N'ID12', N'1212121212', CAST(N'1995-10-22T00:00:00.000' AS DateTime), CAST(N'1995-10-22T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'5', N'ID13', N'3434343434', CAST(N'1992-01-03T00:00:00.000' AS DateTime), CAST(N'1992-01-03T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'6', N'ID14', N'5656565656', CAST(N'1986-06-18T00:00:00.000' AS DateTime), CAST(N'1986-06-18T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'7', N'ID15', N'7878787878', CAST(N'1999-09-27T00:00:00.000' AS DateTime), CAST(N'1999-09-27T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'8', N'ID16', N'9090909090', CAST(N'1988-12-08T00:00:00.000' AS DateTime), CAST(N'1988-12-08T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'9', N'ID2', N'9876543210', CAST(N'1992-05-10T00:00:00.000' AS DateTime), CAST(N'1992-05-10T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'admin', N'1', N'admin', CAST(N'2023-05-30T20:47:54.110' AS DateTime), CAST(N'3000-12-12T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[TheThuVien] ([idThe], [idThanhVien], [Password], [NgayDangKy], [NgayHetHan]) VALUES (N'thuthu', N'2', N'thuthu', CAST(N'2023-05-30T20:48:10.357' AS DateTime), CAST(N'3000-12-12T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'1984', N'1984', N'George Orwell', N'Secker & Warburg', 1949, 90, 5, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'BCATNT', N'Bồ Công Anh Trên Ngực Trái', N'Nguyễn Nhat Anh', N'Kim Đồng', 1992, 80, 6, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'BNSGDT', N'Biên Niên Sử Gia Đình Tôi', N'Nguyễn Huy Thiệp', N'Văn Học', 1995, 75, 9, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'CP', N'Chí Phèo', N'Nam Cao', N'Văn Học', 1941, 45, 4, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'DMPK', N'Dế Mèn Phiêu Lưu Ký', N'Tô Hoài', N'Nhã Nam', 1974, 50, 8, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'DMTB', N'Dế Mèn Tốt Bụng', N'Nguyễn Nhật Ánh', N'Trẻ', 2009, 60, 10, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'HPSS', N'Harry Potter and the Sorcerer''s Stone', N'J.K. Rowling', N'Bloomsbury', 1997, 100, 10, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'LH', N'Lão Hạc', N'Nam Cao', N'Văn Học', 1945, 55, 7, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'MD', N'Moby-Dick', N'Herman Melville', N'Harper & Brothers', 1851, 60, 12, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'PAP', N'Pride and Prejudice', N'Jane Austen', N'T. Egerton, Whitehall', 1813, 120, 8, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'SD', N'Số Đỏ', N'Vũ Trọng Phụng', N'Đại Nam', 1936, 70, 15, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TCITR', N'The Catcher in the Rye', N'J.D. Salinger', N'Little, Brown and Company', 1951, 110, 7, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TD', N'Tắt Đèn', N'Ngô Tất Tố', N'Văn Học', 1946, 30, 12, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TGG', N'The Great Gatsby', N'F. Scott Fitzgerald', N'Charles Scribners Sons', 1925, 80, 4, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TH', N'The Hobbit', N'J.R.R. Tolkien', N'Allen & Unwin', 1937, 180, 9, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TK', N'Truyện Kiều', N'Nguyễn Du', N'N/A', 1820, 65, 6, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TKAM', N'To Kill a Mockingbird', N'Harper Lee', N'J.B. Lippincott & Co.', 1960, 150, 3, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TLOTR', N'The Lord of the Rings', N'J.R.R. Tolkien', N'George Allen & Unwin', 1954, 200, 5, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TTHVTCX', N'Tôi Thấy Hoa Vàng Trên Cỏ Xanh', N'Nguyễn Nhật Ánh', N'Trẻ', 2005, 90, 20, CAST(N'2023-06-21T20:46:52.190' AS DateTime), CAST(N'2023-06-21T20:46:52.190' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[Sach] ([idSach], [tenSach], [tenTacGia], [nhaXuatBan], [namXuatBan], [soTrang], [soLuong], [createdAt], [modifiedAt], [danhGia]) VALUES (N'TTL', N'To the Lighthouse', N'Virginia Woolf', N'Hogarth Press', 1927, 70, 3, CAST(N'2023-06-21T20:41:18.140' AS DateTime), CAST(N'2023-06-21T20:41:18.140' AS DateTime), N'5.5')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'1', N'Kinh Dị')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'2', N'Tình Cảm')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'3', N'Hài Hước')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'4', N'Nhân Văn')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'5', N'Kiến thức')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'6', N'SGK')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'7', N'Siêu Nhiên')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'8', N'LightNovel')
+GO
+INSERT [dbo].[TheLoai] ([idTheLoai], [tenTheLoai]) VALUES (N'9', N'Tâm Lý')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'1984', N'1')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'1984', N'5')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'1984', N'9')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'BCATNT', N'1')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'BNSGDT', N'2')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'CP', N'3')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'DMPK', N'4')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'DMTB', N'5')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'HPSS', N'6')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'LH', N'7')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'MD', N'8')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'PAP', N'9')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'SD', N'1')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TCITR', N'2')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TD', N'3')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TGG', N'4')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TH', N'5')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TK', N'6')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TKAM', N'7')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TLOTR', N'8')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TTHVTCX', N'9')
+GO
+INSERT [dbo].[ChiTietTheLoai] ([idSach], [idTheLoai]) VALUES (N'TTL', N'1')
+GO
