@@ -59,3 +59,9 @@ C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\D
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.AddMutiBook.resources
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\EPPlus.Core.dll
 C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.csproj.AssemblyReference.cache
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.frmQuanThu.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.frmChoose.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.Test.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.ChooseSL.resources
+C:\Users\NVM\OneDrive - DHTDM\Desktop\DoAnLTWF\DoAnLTWF_Code\DoAnLTWF_Code\obj\Debug\netcoreapp3.1\DoAnLTWF_Code.frmChonSach.resources

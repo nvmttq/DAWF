@@ -29,13 +29,14 @@ namespace DoAnLTWF_Code
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mnsUser = new System.Windows.Forms.MenuStrip();
-            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUser = new System.Windows.Forms.ToolStripMenuItem();
             this.xemThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.pbTabpage = new System.Windows.Forms.Panel();
             this.tcAdmin = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -47,18 +48,20 @@ namespace DoAnLTWF_Code
             this.dtgvSach = new System.Windows.Forms.DataGridView();
             this.pnSearchAdnMethod = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button9 = new System.Windows.Forms.Button();
+            this.flpnAcion = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnThemSach = new System.Windows.Forms.Button();
             this.btnSuaSach = new System.Windows.Forms.Button();
             this.btnXoaSach = new System.Windows.Forms.Button();
             this.btnThemHL = new System.Windows.Forms.Button();
+            this.btnSaveBook = new System.Windows.Forms.Button();
+            this.btnCancelBook = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pnTKS = new System.Windows.Forms.Panel();
             this.cbTKS = new System.Windows.Forms.ComboBox();
             this.btnTKS = new System.Windows.Forms.Button();
             this.txtTKS = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pnContentThonTin = new System.Windows.Forms.Panel();
+            this.pnInfoSach = new System.Windows.Forms.Panel();
             this.txtIdSach = new System.Windows.Forms.TextBox();
             this.lbId = new System.Windows.Forms.Label();
             this.panel31 = new System.Windows.Forms.Panel();
@@ -104,12 +107,12 @@ namespace DoAnLTWF_Code
             this.btnSearchUser = new System.Windows.Forms.Button();
             this.txtKeySearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnInfo = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.dtpNgayHH = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.panel34 = new System.Windows.Forms.Panel();
+            this.pnIdThe = new System.Windows.Forms.Panel();
             this.txtIdThe = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.panel41 = new System.Windows.Forms.Panel();
@@ -118,7 +121,9 @@ namespace DoAnLTWF_Code
             this.panel17 = new System.Windows.Forms.Panel();
             this.dtpNgayDK = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
-            this.panel19 = new System.Windows.Forms.Panel();
+            this.pnAction = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.btnXoaUser = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
@@ -145,11 +150,11 @@ namespace DoAnLTWF_Code
             this.panel8 = new System.Windows.Forms.Panel();
             this.txtFname = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.pnIdUser = new System.Windows.Forms.Panel();
             this.txtIdUser = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbObject = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnType = new System.Windows.Forms.Panel();
             this.panel36 = new System.Windows.Forms.Panel();
             this.lbTatCa = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -181,7 +186,7 @@ namespace DoAnLTWF_Code
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.pnHero = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.mnsUser.SuspendLayout();
@@ -195,11 +200,11 @@ namespace DoAnLTWF_Code
             ((System.ComponentModel.ISupportInitialize)(this.dtgvSach)).BeginInit();
             this.pnSearchAdnMethod.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.flpnAcion.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnTKS.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.pnContentThonTin.SuspendLayout();
+            this.pnInfoSach.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel32.SuspendLayout();
             this.panel33.SuspendLayout();
@@ -220,13 +225,13 @@ namespace DoAnLTWF_Code
             ((System.ComponentModel.ISupportInitialize)(this.dtgvUser)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel21.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.pnInfo.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel18.SuspendLayout();
-            this.panel34.SuspendLayout();
+            this.pnIdThe.SuspendLayout();
             this.panel41.SuspendLayout();
             this.panel17.SuspendLayout();
-            this.panel19.SuspendLayout();
+            this.pnAction.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -236,8 +241,8 @@ namespace DoAnLTWF_Code
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnIdUser.SuspendLayout();
+            this.pnType.SuspendLayout();
             this.panel36.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnTypeNhanVien.SuspendLayout();
@@ -255,6 +260,7 @@ namespace DoAnLTWF_Code
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel37.SuspendLayout();
             this.pnHero.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel2
@@ -291,22 +297,22 @@ namespace DoAnLTWF_Code
             this.mnsUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mnsUser.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mnsUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userToolStripMenuItem});
+            this.mnuUser});
             this.mnsUser.Location = new System.Drawing.Point(0, 0);
             this.mnsUser.Name = "mnsUser";
             this.mnsUser.Size = new System.Drawing.Size(200, 28);
             this.mnsUser.TabIndex = 1;
             this.mnsUser.Text = "menuStrip1";
             // 
-            // userToolStripMenuItem
+            // mnuUser
             // 
-            this.userToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuUser.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.xemThôngTinToolStripMenuItem,
-            this.đăngXuấtToolStripMenuItem});
-            this.userToolStripMenuItem.Image = global::DoAnLTWF_Code.Properties.Resources.User_icon_2_svg;
-            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
-            this.userToolStripMenuItem.Text = "User";
+            this.mnuLogout});
+            this.mnuUser.Image = global::DoAnLTWF_Code.Properties.Resources.User_icon_2_svg;
+            this.mnuUser.Name = "mnuUser";
+            this.mnuUser.Size = new System.Drawing.Size(71, 24);
+            this.mnuUser.Text = "User";
             // 
             // xemThôngTinToolStripMenuItem
             // 
@@ -314,11 +320,12 @@ namespace DoAnLTWF_Code
             this.xemThôngTinToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.xemThôngTinToolStripMenuItem.Text = "Xem thông tin";
             // 
-            // đăngXuấtToolStripMenuItem
+            // mnuLogout
             // 
-            this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            this.mnuLogout.Name = "mnuLogout";
+            this.mnuLogout.Size = new System.Drawing.Size(184, 26);
+            this.mnuLogout.Text = "Đăng xuất";
+            this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
             // 
             // pbTabpage
             // 
@@ -326,7 +333,7 @@ namespace DoAnLTWF_Code
             this.pbTabpage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbTabpage.Location = new System.Drawing.Point(0, 31);
             this.pbTabpage.Name = "pbTabpage";
-            this.pbTabpage.Size = new System.Drawing.Size(1200, 602);
+            this.pbTabpage.Size = new System.Drawing.Size(1200, 666);
             this.pbTabpage.TabIndex = 1;
             // 
             // tcAdmin
@@ -342,7 +349,7 @@ namespace DoAnLTWF_Code
             this.tcAdmin.Location = new System.Drawing.Point(0, 0);
             this.tcAdmin.Name = "tcAdmin";
             this.tcAdmin.SelectedIndex = 0;
-            this.tcAdmin.Size = new System.Drawing.Size(1200, 602);
+            this.tcAdmin.Size = new System.Drawing.Size(1200, 666);
             this.tcAdmin.TabIndex = 0;
             // 
             // tabPage1
@@ -361,7 +368,7 @@ namespace DoAnLTWF_Code
             this.tpQLDM.Location = new System.Drawing.Point(4, 24);
             this.tpQLDM.Name = "tpQLDM";
             this.tpQLDM.Padding = new System.Windows.Forms.Padding(3);
-            this.tpQLDM.Size = new System.Drawing.Size(1192, 574);
+            this.tpQLDM.Size = new System.Drawing.Size(1192, 638);
             this.tpQLDM.TabIndex = 1;
             this.tpQLDM.Text = "Quản lý danh mục";
             this.tpQLDM.UseVisualStyleBackColor = true;
@@ -373,7 +380,7 @@ namespace DoAnLTWF_Code
             this.pnQuanLySach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnQuanLySach.Location = new System.Drawing.Point(3, 3);
             this.pnQuanLySach.Name = "pnQuanLySach";
-            this.pnQuanLySach.Size = new System.Drawing.Size(1186, 568);
+            this.pnQuanLySach.Size = new System.Drawing.Size(1186, 632);
             this.pnQuanLySach.TabIndex = 0;
             // 
             // pnSachVaTheLoai
@@ -383,7 +390,7 @@ namespace DoAnLTWF_Code
             this.pnSachVaTheLoai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnSachVaTheLoai.Location = new System.Drawing.Point(0, 37);
             this.pnSachVaTheLoai.Name = "pnSachVaTheLoai";
-            this.pnSachVaTheLoai.Size = new System.Drawing.Size(1186, 531);
+            this.pnSachVaTheLoai.Size = new System.Drawing.Size(1186, 595);
             this.pnSachVaTheLoai.TabIndex = 1;
             // 
             // panel23
@@ -395,7 +402,7 @@ namespace DoAnLTWF_Code
             this.panel23.Location = new System.Drawing.Point(329, 0);
             this.panel23.Name = "panel23";
             this.panel23.Padding = new System.Windows.Forms.Padding(10);
-            this.panel23.Size = new System.Drawing.Size(857, 531);
+            this.panel23.Size = new System.Drawing.Size(857, 595);
             this.panel23.TabIndex = 1;
             // 
             // groupBox4
@@ -404,7 +411,7 @@ namespace DoAnLTWF_Code
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(10, 358);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(837, 163);
+            this.groupBox4.Size = new System.Drawing.Size(837, 227);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Danh sách";
@@ -417,7 +424,7 @@ namespace DoAnLTWF_Code
             this.dtgvSach.Name = "dtgvSach";
             this.dtgvSach.ReadOnly = true;
             this.dtgvSach.RowTemplate.Height = 25;
-            this.dtgvSach.Size = new System.Drawing.Size(831, 141);
+            this.dtgvSach.Size = new System.Drawing.Size(831, 205);
             this.dtgvSach.TabIndex = 0;
             this.dtgvSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvSach_CellClick);
             // 
@@ -434,7 +441,7 @@ namespace DoAnLTWF_Code
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox3.Controls.Add(this.flpnAcion);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox3.Location = new System.Drawing.Point(412, 10);
             this.groupBox3.Name = "groupBox3";
@@ -443,25 +450,27 @@ namespace DoAnLTWF_Code
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Chức năng";
             // 
-            // flowLayoutPanel1
+            // flpnAcion
             // 
-            this.flowLayoutPanel1.Controls.Add(this.button9);
-            this.flowLayoutPanel1.Controls.Add(this.btnSuaSach);
-            this.flowLayoutPanel1.Controls.Add(this.btnXoaSach);
-            this.flowLayoutPanel1.Controls.Add(this.btnThemHL);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(50, 27);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(369, 27);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flpnAcion.Controls.Add(this.btnThemSach);
+            this.flpnAcion.Controls.Add(this.btnSuaSach);
+            this.flpnAcion.Controls.Add(this.btnXoaSach);
+            this.flpnAcion.Controls.Add(this.btnThemHL);
+            this.flpnAcion.Controls.Add(this.btnSaveBook);
+            this.flpnAcion.Controls.Add(this.btnCancelBook);
+            this.flpnAcion.Location = new System.Drawing.Point(28, 16);
+            this.flpnAcion.Name = "flpnAcion";
+            this.flpnAcion.Size = new System.Drawing.Size(369, 61);
+            this.flpnAcion.TabIndex = 0;
             // 
-            // button9
+            // btnThemSach
             // 
-            this.button9.Location = new System.Drawing.Point(3, 3);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 3;
-            this.button9.Text = "Thêm";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnThemSach.Location = new System.Drawing.Point(3, 3);
+            this.btnThemSach.Name = "btnThemSach";
+            this.btnThemSach.Size = new System.Drawing.Size(75, 23);
+            this.btnThemSach.TabIndex = 3;
+            this.btnThemSach.Text = "Thêm";
+            this.btnThemSach.UseVisualStyleBackColor = true;
             // 
             // btnSuaSach
             // 
@@ -493,13 +502,33 @@ namespace DoAnLTWF_Code
             this.btnThemHL.UseVisualStyleBackColor = true;
             this.btnThemHL.Click += new System.EventHandler(this.btnThemHL_Click);
             // 
+            // btnSaveBook
+            // 
+            this.btnSaveBook.Location = new System.Drawing.Point(3, 32);
+            this.btnSaveBook.Name = "btnSaveBook";
+            this.btnSaveBook.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveBook.TabIndex = 7;
+            this.btnSaveBook.Text = "Lưu";
+            this.btnSaveBook.UseVisualStyleBackColor = true;
+            this.btnSaveBook.Click += new System.EventHandler(this.btnSaveBook_Click);
+            // 
+            // btnCancelBook
+            // 
+            this.btnCancelBook.Location = new System.Drawing.Point(84, 32);
+            this.btnCancelBook.Name = "btnCancelBook";
+            this.btnCancelBook.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelBook.TabIndex = 8;
+            this.btnCancelBook.Text = "Hủy";
+            this.btnCancelBook.UseVisualStyleBackColor = true;
+            this.btnCancelBook.Click += new System.EventHandler(this.btnCancelBook_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.pnTKS);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox2.Location = new System.Drawing.Point(0, 10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(406, 80);
+            this.groupBox2.Size = new System.Drawing.Size(398, 80);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm kiếm";
@@ -547,8 +576,7 @@ namespace DoAnLTWF_Code
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.pnContentThonTin);
+            this.groupBox1.Controls.Add(this.pnInfoSach);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(10, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 30, 3, 30);
@@ -558,22 +586,22 @@ namespace DoAnLTWF_Code
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
-            // pnContentThonTin
+            // pnInfoSach
             // 
-            this.pnContentThonTin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.pnContentThonTin.Controls.Add(this.txtIdSach);
-            this.pnContentThonTin.Controls.Add(this.lbId);
-            this.pnContentThonTin.Controls.Add(this.panel31);
-            this.pnContentThonTin.Controls.Add(this.panel28);
-            this.pnContentThonTin.Controls.Add(this.panel25);
-            this.pnContentThonTin.Controls.Add(this.panel24);
-            this.pnContentThonTin.Controls.Add(this.panel22);
-            this.pnContentThonTin.Location = new System.Drawing.Point(103, 19);
-            this.pnContentThonTin.Name = "pnContentThonTin";
-            this.pnContentThonTin.Padding = new System.Windows.Forms.Padding(10);
-            this.pnContentThonTin.Size = new System.Drawing.Size(631, 223);
-            this.pnContentThonTin.TabIndex = 0;
-            this.pnContentThonTin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnContentThonTin_Paint);
+            this.pnInfoSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pnInfoSach.Controls.Add(this.txtIdSach);
+            this.pnInfoSach.Controls.Add(this.lbId);
+            this.pnInfoSach.Controls.Add(this.panel31);
+            this.pnInfoSach.Controls.Add(this.panel28);
+            this.pnInfoSach.Controls.Add(this.panel25);
+            this.pnInfoSach.Controls.Add(this.panel24);
+            this.pnInfoSach.Controls.Add(this.panel22);
+            this.pnInfoSach.Location = new System.Drawing.Point(103, 19);
+            this.pnInfoSach.Name = "pnInfoSach";
+            this.pnInfoSach.Padding = new System.Windows.Forms.Padding(10);
+            this.pnInfoSach.Size = new System.Drawing.Size(631, 223);
+            this.pnInfoSach.TabIndex = 0;
+            this.pnInfoSach.Paint += new System.Windows.Forms.PaintEventHandler(this.pnContentThonTin_Paint);
             // 
             // txtIdSach
             // 
@@ -612,9 +640,9 @@ namespace DoAnLTWF_Code
             // 
             // txtSoTrang
             // 
-            this.txtSoTrang.Location = new System.Drawing.Point(103, 4);
+            this.txtSoTrang.Location = new System.Drawing.Point(94, 4);
             this.txtSoTrang.Name = "txtSoTrang";
-            this.txtSoTrang.Size = new System.Drawing.Size(106, 23);
+            this.txtSoTrang.Size = new System.Drawing.Size(115, 23);
             this.txtSoTrang.TabIndex = 2;
             // 
             // lbSoTrang
@@ -674,9 +702,9 @@ namespace DoAnLTWF_Code
             // 
             // txtTacGia
             // 
-            this.txtTacGia.Location = new System.Drawing.Point(103, 4);
+            this.txtTacGia.Location = new System.Drawing.Point(94, 4);
             this.txtTacGia.Name = "txtTacGia";
-            this.txtTacGia.Size = new System.Drawing.Size(106, 23);
+            this.txtTacGia.Size = new System.Drawing.Size(115, 23);
             this.txtTacGia.TabIndex = 2;
             // 
             // label22
@@ -737,9 +765,9 @@ namespace DoAnLTWF_Code
             // txtDanhGia
             // 
             this.txtDanhGia.Enabled = false;
-            this.txtDanhGia.Location = new System.Drawing.Point(103, 4);
+            this.txtDanhGia.Location = new System.Drawing.Point(94, 4);
             this.txtDanhGia.Name = "txtDanhGia";
-            this.txtDanhGia.Size = new System.Drawing.Size(106, 23);
+            this.txtDanhGia.Size = new System.Drawing.Size(115, 23);
             this.txtDanhGia.TabIndex = 2;
             // 
             // label21
@@ -747,7 +775,7 @@ namespace DoAnLTWF_Code
             this.label21.Dock = System.Windows.Forms.DockStyle.Left;
             this.label21.Location = new System.Drawing.Point(0, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(100, 30);
+            this.label21.Size = new System.Drawing.Size(88, 30);
             this.label21.TabIndex = 0;
             this.label21.Text = "Đánh giá";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -840,7 +868,7 @@ namespace DoAnLTWF_Code
             this.pnTheLoai.Location = new System.Drawing.Point(0, 0);
             this.pnTheLoai.Name = "pnTheLoai";
             this.pnTheLoai.Padding = new System.Windows.Forms.Padding(10, 16, 10, 10);
-            this.pnTheLoai.Size = new System.Drawing.Size(329, 531);
+            this.pnTheLoai.Size = new System.Drawing.Size(329, 595);
             this.pnTheLoai.TabIndex = 0;
             // 
             // pnTableTheLoai
@@ -849,7 +877,7 @@ namespace DoAnLTWF_Code
             this.pnTableTheLoai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnTableTheLoai.Location = new System.Drawing.Point(10, 16);
             this.pnTableTheLoai.Name = "pnTableTheLoai";
-            this.pnTableTheLoai.Size = new System.Drawing.Size(309, 505);
+            this.pnTableTheLoai.Size = new System.Drawing.Size(309, 569);
             this.pnTableTheLoai.TabIndex = 1;
             // 
             // dtgvTheLoai
@@ -860,7 +888,7 @@ namespace DoAnLTWF_Code
             this.dtgvTheLoai.Name = "dtgvTheLoai";
             this.dtgvTheLoai.ReadOnly = true;
             this.dtgvTheLoai.RowTemplate.Height = 25;
-            this.dtgvTheLoai.Size = new System.Drawing.Size(309, 505);
+            this.dtgvTheLoai.Size = new System.Drawing.Size(309, 569);
             this.dtgvTheLoai.TabIndex = 4;
             this.dtgvTheLoai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvTheLoai_CellClick);
             // 
@@ -889,8 +917,8 @@ namespace DoAnLTWF_Code
             // 
             this.pnQuanLyNguoiDung.Controls.Add(this.panel6);
             this.pnQuanLyNguoiDung.Controls.Add(this.panel5);
-            this.pnQuanLyNguoiDung.Controls.Add(this.panel4);
-            this.pnQuanLyNguoiDung.Controls.Add(this.panel3);
+            this.pnQuanLyNguoiDung.Controls.Add(this.pnInfo);
+            this.pnQuanLyNguoiDung.Controls.Add(this.pnType);
             this.pnQuanLyNguoiDung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnQuanLyNguoiDung.Location = new System.Drawing.Point(0, 0);
             this.pnQuanLyNguoiDung.Name = "pnQuanLyNguoiDung";
@@ -1004,25 +1032,26 @@ namespace DoAnLTWF_Code
             this.label4.Text = "Tìm kiếm";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel4
+            // pnInfo
             // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.panel20);
-            this.panel4.Controls.Add(this.panel19);
-            this.panel4.Controls.Add(this.panel11);
-            this.panel4.Controls.Add(this.panel2);
-            this.panel4.Controls.Add(this.lbObject);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 100);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(8);
-            this.panel4.Size = new System.Drawing.Size(1192, 199);
-            this.panel4.TabIndex = 1;
+            this.pnInfo.BackColor = System.Drawing.Color.Transparent;
+            this.pnInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnInfo.Controls.Add(this.panel20);
+            this.pnInfo.Controls.Add(this.pnAction);
+            this.pnInfo.Controls.Add(this.panel11);
+            this.pnInfo.Controls.Add(this.panel2);
+            this.pnInfo.Controls.Add(this.lbObject);
+            this.pnInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnInfo.Location = new System.Drawing.Point(0, 100);
+            this.pnInfo.Name = "pnInfo";
+            this.pnInfo.Padding = new System.Windows.Forms.Padding(8);
+            this.pnInfo.Size = new System.Drawing.Size(1192, 199);
+            this.pnInfo.TabIndex = 1;
             // 
             // panel20
             // 
             this.panel20.Controls.Add(this.panel18);
-            this.panel20.Controls.Add(this.panel34);
+            this.panel20.Controls.Add(this.pnIdThe);
             this.panel20.Controls.Add(this.panel41);
             this.panel20.Controls.Add(this.panel17);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1058,14 +1087,14 @@ namespace DoAnLTWF_Code
             this.label13.Text = "Ngày hết hạn :";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel34
+            // pnIdThe
             // 
-            this.panel34.Controls.Add(this.txtIdThe);
-            this.panel34.Controls.Add(this.label14);
-            this.panel34.Location = new System.Drawing.Point(3, 5);
-            this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(255, 33);
-            this.panel34.TabIndex = 4;
+            this.pnIdThe.Controls.Add(this.txtIdThe);
+            this.pnIdThe.Controls.Add(this.label14);
+            this.pnIdThe.Location = new System.Drawing.Point(3, 5);
+            this.pnIdThe.Name = "pnIdThe";
+            this.pnIdThe.Size = new System.Drawing.Size(255, 33);
+            this.pnIdThe.TabIndex = 4;
             // 
             // txtIdThe
             // 
@@ -1137,19 +1166,43 @@ namespace DoAnLTWF_Code
             this.label12.Text = "Ngày đăng ký :";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel19
+            // pnAction
             // 
-            this.panel19.Controls.Add(this.btnAddUser);
-            this.panel19.Controls.Add(this.btnXoaUser);
-            this.panel19.Controls.Add(this.btnSua);
-            this.panel19.Location = new System.Drawing.Point(311, 154);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(559, 33);
-            this.panel19.TabIndex = 5;
+            this.pnAction.Controls.Add(this.btnCancel);
+            this.pnAction.Controls.Add(this.btnSave);
+            this.pnAction.Controls.Add(this.btnAddUser);
+            this.pnAction.Controls.Add(this.btnXoaUser);
+            this.pnAction.Controls.Add(this.btnSua);
+            this.pnAction.Location = new System.Drawing.Point(316, 154);
+            this.pnAction.Name = "pnAction";
+            this.pnAction.Size = new System.Drawing.Size(559, 33);
+            this.pnAction.TabIndex = 5;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(413, 0);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(10);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 33);
+            this.btnCancel.TabIndex = 10;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(318, 0);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(10);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 33);
+            this.btnSave.TabIndex = 9;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(85, 0);
+            this.btnAddUser.Location = new System.Drawing.Point(28, 0);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(10);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(75, 33);
@@ -1160,7 +1213,7 @@ namespace DoAnLTWF_Code
             // 
             // btnXoaUser
             // 
-            this.btnXoaUser.Location = new System.Drawing.Point(367, 0);
+            this.btnXoaUser.Location = new System.Drawing.Point(223, 0);
             this.btnXoaUser.Margin = new System.Windows.Forms.Padding(10);
             this.btnXoaUser.Name = "btnXoaUser";
             this.btnXoaUser.Size = new System.Drawing.Size(75, 33);
@@ -1171,7 +1224,7 @@ namespace DoAnLTWF_Code
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(235, 0);
+            this.btnSua.Location = new System.Drawing.Point(128, 0);
             this.btnSua.Margin = new System.Windows.Forms.Padding(10);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 33);
@@ -1306,7 +1359,7 @@ namespace DoAnLTWF_Code
             this.panel2.Controls.Add(this.panel10);
             this.panel2.Controls.Add(this.panel9);
             this.panel2.Controls.Add(this.panel8);
-            this.panel2.Controls.Add(this.panel7);
+            this.panel2.Controls.Add(this.pnIdUser);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(8, 28);
             this.panel2.Margin = new System.Windows.Forms.Padding(30);
@@ -1393,19 +1446,18 @@ namespace DoAnLTWF_Code
             this.label5.Text = "Họ :";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel7
+            // pnIdUser
             // 
-            this.panel7.Controls.Add(this.txtIdUser);
-            this.panel7.Controls.Add(this.label3);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(255, 33);
-            this.panel7.TabIndex = 0;
+            this.pnIdUser.Controls.Add(this.txtIdUser);
+            this.pnIdUser.Controls.Add(this.label3);
+            this.pnIdUser.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnIdUser.Location = new System.Drawing.Point(0, 0);
+            this.pnIdUser.Name = "pnIdUser";
+            this.pnIdUser.Size = new System.Drawing.Size(255, 33);
+            this.pnIdUser.TabIndex = 0;
             // 
             // txtIdUser
             // 
-            this.txtIdUser.Enabled = false;
             this.txtIdUser.Location = new System.Drawing.Point(109, 2);
             this.txtIdUser.Name = "txtIdUser";
             this.txtIdUser.Size = new System.Drawing.Size(146, 23);
@@ -1432,19 +1484,19 @@ namespace DoAnLTWF_Code
             this.lbObject.Text = "Thông tin độc giả";
             this.lbObject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel3
+            // pnType
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.panel36);
-            this.panel3.Controls.Add(this.pnTypeNhanVien);
-            this.panel3.Controls.Add(this.pnTypeDocGia);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1192, 100);
-            this.panel3.TabIndex = 0;
+            this.pnType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnType.Controls.Add(this.panel36);
+            this.pnType.Controls.Add(this.pnTypeNhanVien);
+            this.pnType.Controls.Add(this.pnTypeDocGia);
+            this.pnType.Controls.Add(this.label2);
+            this.pnType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnType.Location = new System.Drawing.Point(0, 0);
+            this.pnType.Name = "pnType";
+            this.pnType.Padding = new System.Windows.Forms.Padding(5);
+            this.pnType.Size = new System.Drawing.Size(1192, 100);
+            this.pnType.TabIndex = 0;
             // 
             // panel36
             // 
@@ -1775,26 +1827,18 @@ namespace DoAnLTWF_Code
             this.pnHero.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnHero.Location = new System.Drawing.Point(0, 0);
             this.pnHero.Name = "pnHero";
-            this.pnHero.Size = new System.Drawing.Size(1200, 633);
+            this.pnHero.Size = new System.Drawing.Size(1200, 697);
             this.pnHero.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(18, 149);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 633);
+            this.ClientSize = new System.Drawing.Size(1200, 697);
             this.Controls.Add(this.pnHero);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsUser;
+            this.MinimumSize = new System.Drawing.Size(900, 736);
             this.Name = "frmAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admin";
@@ -1815,13 +1859,13 @@ namespace DoAnLTWF_Code
             ((System.ComponentModel.ISupportInitialize)(this.dtgvSach)).EndInit();
             this.pnSearchAdnMethod.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flpnAcion.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.pnTKS.ResumeLayout(false);
             this.pnTKS.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.pnContentThonTin.ResumeLayout(false);
-            this.pnContentThonTin.PerformLayout();
+            this.pnInfoSach.ResumeLayout(false);
+            this.pnInfoSach.PerformLayout();
             this.panel31.ResumeLayout(false);
             this.panel32.ResumeLayout(false);
             this.panel32.PerformLayout();
@@ -1850,16 +1894,16 @@ namespace DoAnLTWF_Code
             this.panel5.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
             this.panel21.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.pnInfo.ResumeLayout(false);
+            this.pnInfo.PerformLayout();
             this.panel20.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
-            this.panel34.ResumeLayout(false);
-            this.panel34.PerformLayout();
+            this.pnIdThe.ResumeLayout(false);
+            this.pnIdThe.PerformLayout();
             this.panel41.ResumeLayout(false);
             this.panel41.PerformLayout();
             this.panel17.ResumeLayout(false);
-            this.panel19.ResumeLayout(false);
+            this.pnAction.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
@@ -1875,9 +1919,9 @@ namespace DoAnLTWF_Code
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel3.ResumeLayout(false);
+            this.pnIdUser.ResumeLayout(false);
+            this.pnIdUser.PerformLayout();
+            this.pnType.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pnTypeNhanVien.ResumeLayout(false);
@@ -1897,6 +1941,7 @@ namespace DoAnLTWF_Code
             this.panel37.ResumeLayout(false);
             this.panel37.PerformLayout();
             this.pnHero.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1906,9 +1951,9 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip mnsUser;
-        private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuUser;
         private System.Windows.Forms.ToolStripMenuItem xemThôngTinToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuLogout;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnHero;
         private System.Windows.Forms.TabControl tcAdmin;
@@ -1920,8 +1965,8 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Panel pnSearchAdnMethod;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.FlowLayoutPanel flpnAcion;
+        private System.Windows.Forms.Button btnThemSach;
         private System.Windows.Forms.Button btnSuaSach;
         private System.Windows.Forms.Button btnXoaSach;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1929,7 +1974,7 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Button btnTKS;
         private System.Windows.Forms.TextBox txtTKS;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel pnContentThonTin;
+        private System.Windows.Forms.Panel pnInfoSach;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.Panel panel32;
         private System.Windows.Forms.TextBox txtSoTrang;
@@ -1970,13 +2015,13 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Button btnSearchUser;
         private System.Windows.Forms.TextBox txtKeySearch;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnInfo;
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Panel pnAction;
         private System.Windows.Forms.Button btnXoaUser;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Panel panel11;
@@ -2001,11 +2046,11 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.TextBox txtFname;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel pnIdUser;
         private System.Windows.Forms.TextBox txtIdUser;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbObject;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnType;
         private System.Windows.Forms.Panel pnTypeNhanVien;
         private System.Windows.Forms.Label lbTypeNhanVien;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -2043,7 +2088,7 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.ComboBox cbTKS;
         private System.Windows.Forms.TextBox txtIdSach;
         private System.Windows.Forms.Button btnAddUser;
-        private System.Windows.Forms.Panel panel34;
+        private System.Windows.Forms.Panel pnIdThe;
         private System.Windows.Forms.TextBox txtIdThe;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel41;
@@ -2054,6 +2099,10 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.ComboBox cbSearchUser;
         private System.Windows.Forms.Button btnThemHL;
         private System.Windows.Forms.DataGridView dtgvTheLoai;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnSaveBook;
+        private System.Windows.Forms.Button btnCancelBook;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

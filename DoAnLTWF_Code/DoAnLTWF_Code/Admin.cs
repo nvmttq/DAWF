@@ -12,11 +12,14 @@ namespace DoAnLTWF_Code
 {
     public partial class frmAdmin : Form
     {
-        public frmAdmin()
+        private User user_current = null;
+        public frmAdmin(User u)
         {
             InitializeComponent();
+            user_current = u;
+            mnuUser.Text = u.Fname + " " + u.Lname;
         }
-        #region events
+        #region events_MAIN
 
         private void frmAdmin_Resize(object sender, EventArgs e)
         {
@@ -34,6 +37,18 @@ namespace DoAnLTWF_Code
 
             cbTKS.SelectedIndex = 0;
             cbSearchUser.SelectedIndex = 0;
+
+            foreach (Control ctr in pnInfoSach.Controls)
+            {
+               if(ctr.Name != "flpnAcion") ctr.Enabled = true;
+
+            }
+
+            foreach (Control ctr in pnInfoSach.Controls)
+            {
+                ctr.Enabled = false;
+
+            }
         }
 
         private void typeObject_Click(object sender, EventArgs e)
@@ -67,31 +82,26 @@ namespace DoAnLTWF_Code
             }
         }
 
-        private void dtgvUser_CellClick(object sender, DataGridViewCellEventArgs e)
+ 
+
+        #endregion
+
+
+
+
+        #region tab_DanhMuc
+        #region panelTheLoai
+        private void listTheLoai()
         {
-            //DataGridViewCell dtgvc = sender as DataGridViewCell;
-            //int row_id = dtgvc.RowIndex;
-
-            if(e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                DataGridViewRow slRow = dtgvUser.Rows[e.RowIndex];
-                slRow.Selected = true;
-                txtIdUser.Text = slRow.Cells["IdThanhVien"].Value.ToString();
-                txtFname.Text = slRow.Cells["Fname"].Value.ToString();
-                txtLname.Text = slRow.Cells["Lname"].Value.ToString();
-                txtEmail.Text = slRow.Cells["Email"].Value.ToString();
-                dtpNgaySinh.Text = slRow.Cells["Birthday"].Value.ToString();
-                txtPhone.Text = slRow.Cells["Phone"].Value.ToString();
-                txtBank.Text = slRow.Cells["Bank"].Value.ToString();
-                dtpNgayDK.Value = Convert.ToDateTime(slRow.Cells["NgayDangKy"].Value);
-                dtpNgayHH.Value = Convert.ToDateTime(slRow.Cells["NgayDangKy"].Value);
-                txtIdThe.Text = slRow.Cells["IdThe"].Value.ToString();
-                txtRole.Text = slRow.Cells["Mode"].Value.ToString(); // = moderole
-                
-            }
+            List<TheLoai> listTL = TheLoaiDAO.Instance.listTheLoai();
+            dtgvTheLoai.DataSource = listTL;
         }
+        #endregion
 
-        #region EVENTS_SACH
+        #region ds Sach
+
+        #region EVENTS
+
         private void dtgvSach_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -143,6 +153,18 @@ namespace DoAnLTWF_Code
 
         private void btnSuaSach_Click(object sender, EventArgs e)
         {
+            foreach (Control ctr in pnInfoSach.Controls)
+            {
+                ctr.Enabled = true;
+
+            }
+
+            txtDanhGia.Enabled = false;
+            book_setButtonEndbel((sender as Button).Name, "TRUESENDER");
+        }
+
+        private void edit_Book()
+        {
             DialogResult res = MessageBox.Show($"Chỉnh sửa thông tin của sách với id = {txtIdSach.Text} ?", "Xác nhận sửa thông tin !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
@@ -153,6 +175,12 @@ namespace DoAnLTWF_Code
                     SachDAO.Instance.suaSach(sach);
                     MessageBox.Show($"Chỉnh sửa thông tin sách với id = {txtIdSach.Text} thành công !!!", "Thành công!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtgvSach.DataSource = SachDAO.Instance.listSach();
+
+                    book_setButtonEndbel("", "ALLTRUE");
+                    foreach (Control ctr in pnInfoSach.Controls)
+                    {
+                        ctr.Enabled = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -160,23 +188,73 @@ namespace DoAnLTWF_Code
                 }
             }
         }
-        #endregion
 
-        #endregion
-
-
-
-
-        #region tabControlDanhMuc
-        #region panelTheLoai
-        private void listTheLoai()
+        private void btnThemHL_Click(object sender, EventArgs e)
         {
-            List<TheLoai> listTL = TheLoaiDAO.Instance.listTheLoai();
-            dtgvTheLoai.DataSource = listTL;
+            AddMutiBook addMuti = new AddMutiBook();
+            addMuti.ShowDialog();
+            dtgvSach.DataSource = SachDAO.Instance.listSach();
         }
-        #endregion
 
-        #region ds Sach
+        private void dtgvTheLoai_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow slRow = dtgvTheLoai.Rows[e.RowIndex];
+                slRow.Selected = true;
+
+                //    MessageBox.Show(slRow.Cells["TenTheLoai"].Value.ToString());
+                List<Sach> lists = TheLoaiDAO.Instance.getListSach_ClickTheLoai(slRow.Cells["TenTheLoai"].Value.ToString());
+
+                dtgvSach.DataSource = lists;
+            }
+        }
+
+        private void book_setButtonEndbel(string name, string op)
+        {
+            if (op == "TRUESENDER")
+            {
+                foreach (Control ctr in flpnAcion.Controls)
+                {
+                    if (ctr.Name != name && ctr.Name != "btnSaveBook" && ctr.Name != "btnCancelBook")
+                    {
+                        ctr.Enabled = !ctr.Enabled;
+                    }
+                }
+            }
+            else if (op == "ALLTRUE")
+            {
+                foreach (Control ctr in flpnAcion.Controls)
+                {
+                    ctr.Enabled = true;
+                }
+            }
+        }
+
+
+        private void btnSaveBook_Click(object sender, EventArgs e)
+        {
+            
+
+            if(btnSuaSach.Enabled == true)
+            {
+                edit_Book();
+            }
+            
+
+        }
+
+        private void btnCancelBook_Click(object sender, EventArgs e)
+        {
+            book_setButtonEndbel("", "ALLTRUE");
+            foreach (Control ctr in pnInfoSach.Controls)
+            {
+                ctr.Enabled = false;
+            }
+        }
+
+
+        #endregion
         private void listSach()
         {
             List<Sach> listSach = SachDAO.Instance.listSach();
@@ -187,42 +265,54 @@ namespace DoAnLTWF_Code
 
         #endregion
 
-    #region tabControl User
-        private void listUser(string modRole)
+
+
+
+        #region tab_User
+
+        #region EVENTS
+        private void dtgvUser_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            List<User> listUser = UserDAO.Instance.listUser(modRole);
-            dtgvUser.DataSource = listUser;
-        }
-    #endregion
+            
 
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow slRow = dtgvUser.Rows[e.RowIndex];
+                slRow.Selected = true;
+                txtIdUser.Text = slRow.Cells["IdThanhVien"].Value.ToString();
+                txtFname.Text = slRow.Cells["Fname"].Value.ToString();
+                txtLname.Text = slRow.Cells["Lname"].Value.ToString();
+                txtEmail.Text = slRow.Cells["Email"].Value.ToString();
+                dtpNgaySinh.Text = slRow.Cells["Birthday"].Value.ToString();
+                txtPhone.Text = slRow.Cells["Phone"].Value.ToString();
+                txtBank.Text = slRow.Cells["Bank"].Value.ToString();
+                dtpNgayDK.Value = Convert.ToDateTime(slRow.Cells["NgayDangKy"].Value);
+                dtpNgayHH.Value = Convert.ToDateTime(slRow.Cells["NgayDangKy"].Value);
+                txtIdThe.Text = slRow.Cells["IdThe"].Value.ToString();
+                txtRole.Text = slRow.Cells["Mode"].Value.ToString(); // = moderole
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnContentThonTin_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        
-
-        private void radioButton2_Click(object sender, EventArgs e)
-        {
-           
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            string id = txtIdUser.Text;
-            
+            //allow edit 
+            foreach (Control ctr in pnInfo.Controls)
+            {
+                ctr.Enabled = true;
 
+            }
+
+            pnIdUser.Enabled = false;
+            pnIdThe.Enabled = false;
+            setButtonEndbel((sender as Button).Name, "TRUESENDER");
+
+
+        }
+
+        private void editUser()
+        {
+            string id = txtIdUser.Text;
             DialogResult res = MessageBox.Show($"Chỉnh sửa thông tin của user với id = {id} ?", "Xác nhận chỉnh sửa thông tin!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
@@ -233,15 +323,20 @@ namespace DoAnLTWF_Code
                     UserDAO.Instance.suaUser(u);
                     MessageBox.Show($"Chỉnh sửa thông tin user id = {id} thành công !!!", "Thành công!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtgvUser.DataSource = UserDAO.Instance.listUser("ALL1");
+
+                    setButtonEndbel("", "ALLTRUE");
+                    foreach (Control ctr in pnInfo.Controls)
+                    {
+                        if (ctr.Name != "pnAction") ctr.Enabled = false;
+
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
-
         }
-
         private void btnXoaUser_Click(object sender, EventArgs e)
         {
             string id = txtIdUser.Text;
@@ -264,6 +359,7 @@ namespace DoAnLTWF_Code
             }
         }
 
+        
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             AddUser add = new AddUser();
@@ -280,26 +376,83 @@ namespace DoAnLTWF_Code
             dtgvUser.DataSource = list;
         }
 
-        private void dtgvTheLoai_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void setButtonEndbel(string name, string op)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (op == "TRUESENDER")
             {
-                DataGridViewRow slRow = dtgvTheLoai.Rows[e.RowIndex];
-                slRow.Selected = true;
-
-                //    MessageBox.Show(slRow.Cells["TenTheLoai"].Value.ToString());
-                List<Sach> lists = TheLoaiDAO.Instance.getListSach_ClickTheLoai(slRow.Cells["TenTheLoai"].Value.ToString());
-
-                dtgvSach.DataSource = lists;
+                foreach (Control ctr in pnAction.Controls)
+                {
+                    if (ctr.Name != name && ctr.Name != "btnSave" && ctr.Name != "btnCancel")
+                    {
+                        ctr.Enabled = !ctr.Enabled;
+                    }
+                }
+            }
+            else if (op == "ALLTRUE")
+            {
+                foreach (Control ctr in pnAction.Controls)
+                {
+                    ctr.Enabled = true;
+                }
             }
         }
 
-        private void btnThemHL_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            AddMutiBook addMuti = new AddMutiBook();
-            addMuti.ShowDialog();
-            dtgvSach.DataSource = SachDAO.Instance.listSach();
+            setButtonEndbel("", "ALLTRUE");
+
+            foreach (Control ctr in pnInfo.Controls)
+            {
+                if (ctr.Name != "pnAction") ctr.Enabled = false;
+
+            }
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (btnSua.Enabled == true)
+            {
+                editUser();
+            }
+            
+                
+        }
+
+        
+
+        #endregion
+
+        #region METHOD
+        private void listUser(string modRole)
+            {
+                List<User> listUser = UserDAO.Instance.listUser(modRole);
+                dtgvUser.DataSource = listUser;
+            }
+            #endregion
+
+        #endregion
+
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnContentThonTin_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void mnuLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        
     }
 }

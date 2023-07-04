@@ -23,26 +23,28 @@ namespace DoAnLTWF_Code.DAO
 
         public AccountDAO() { }
 
-        public List<Sach> listSach()
-        {
-            List<Sach> listSach = new List<Sach>();
 
-            string query = "SELECT * FROM Sach";
-            DataTable data = DataProvider.Instance.ExcuteQuery(query, null);
-
-            foreach(DataRow item in data.Rows)
-            {
-                Sach tl = new Sach(item);
-                listSach.Add(tl);
-            }
-            return listSach;
-        }
 
         public Account getAccountWithId(string id)
         {
             Account acc = null;
 
             string query = $"SELECT * FROM Account WHERE idThanhVien = '{id}'";
+            DataTable data = DataProvider.Instance.ExcuteQuery(query, null);
+
+            foreach (DataRow item in data.Rows)
+            {
+                acc = new Account(item);
+            }
+
+            return acc;
+        }
+
+        public Account getAccountWithIdThe(string id)
+        {
+            Account acc = null;
+
+            string query = $"SELECT * FROM TheThuVien WHERE idThe = '{id}'";
             DataTable data = DataProvider.Instance.ExcuteQuery(query, null);
 
             foreach (DataRow item in data.Rows)
@@ -60,24 +62,35 @@ namespace DoAnLTWF_Code.DAO
             int dt = DataProvider.Instance.ExcuteNonQuery(query);
         }
 
-        public void xoaSach(string id)
+        
+        public User login(string user, string pass)
         {
+            string query = $"USP_userLogin @username = N'{user}', @pass = N'{pass}'";
+            DataTable dt = DataProvider.Instance.ExcuteQuery(query);
 
-            string query = $"DELETE FROM SACH WHERE idSach = '{id}'";
+            if(dt.Rows.Count > 0)
+            {
+                return new User(dt.Rows[0]);
+            }
 
-            int row = DataProvider.Instance.ExcuteNonQuery(query);
-
-            return;
+            return null;
         }
 
-        public void suaSach(Sach s)
+
+        public User resigter(User u)
         {
+            return u;
+        }
 
-            string query = $"UPDATE Sach SET tenSach = '{s.TenSach}', tenTacGia = '{s.TenTacGia}', nhaXuatBan = '{s.NhaXuatBan}', namXuatBan = '{s.NamXuatBan}', soTrang = '{s.SoTrang}', soLuong = '{s.SoLuong}', danhGia = '{s.DanhGia}' WHERE idSach = '{s.IdSach}'";
+        public bool AccountExists(string tk)
+        {
+            if (tk == "") return false;
+            string query = $"SELECT * FROM TheThuVien WHERE idThe = '{tk}'";
+            DataTable dt = DataProvider.Instance.ExcuteQuery(query);
 
-            int row = DataProvider.Instance.ExcuteNonQuery(query);
+            if (dt.Rows.Count > 0) return false;
 
-            return;
+            return true;
         }
     }
 }

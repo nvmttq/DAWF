@@ -13,6 +13,12 @@
     <Compile Update="ChiTietSach.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ChonSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ChooseSL.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="DangKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -22,10 +28,19 @@
     <Compile Update="ListBookUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="QuanThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ShowListChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SinhVien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="SVMuonSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Test.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="YeuCauThemSach.cs">

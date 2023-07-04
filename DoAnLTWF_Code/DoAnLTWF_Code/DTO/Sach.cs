@@ -29,6 +29,7 @@ namespace DoAnLTWF_Code.DTO
             this.DanhGia = danhGia;
         }
 
+        //edit
         public Sach(string id, string tenSach, string tenTacGia, string nhaXuatBan, int namXB, int soTrang, int soLuong, DateTime modifiedAt)
         {
             this.IdSach = id;
@@ -41,6 +42,16 @@ namespace DoAnLTWF_Code.DTO
             this.ModifiedAt = modifiedAt;
         }
 
+        public Sach(string id, string tenSach, string tenTacGia, string nhaXuatBan, int namXB, int soTrang, int soLuong)
+        {
+            this.IdSach = id;
+            this.TenSach = tenSach;
+            this.TenTacGia = tenTacGia;
+            this.NhaXuatBan = nhaXuatBan;
+            this.NamXuatBan = namXB;
+            this.SoTrang = soTrang;
+            this.SoLuong = soLuong;
+        }
         public Sach(DataRow row)
         {
             this.IdSach = row["idSach"].ToString();

@@ -43,7 +43,7 @@ namespace DoAnLTWF_Code.DAO
         {
             List<TheLoai> listTLSach = new List<TheLoai>();
              
-            string query = $"EXEC USP_getTheLoaiFromIdSach @idSach = {idSach}";
+            string query = $"EXEC USP_getTheLoaiFromIdSach @idSach = '{idSach}'";
             DataTable data = DataProvider.Instance.ExcuteQuery(query, null);
             
             foreach (DataRow item in data.Rows)
@@ -58,12 +58,20 @@ namespace DoAnLTWF_Code.DAO
 
         public string ListTheLoaiToString(List<TheLoai> listTLSach)
         {
+            if(listTLSach == null)
+            {
+                return " ";
+            }
             string tlSach = "";
             foreach (TheLoai item in listTLSach)
             {
                 tlSach = tlSach + item.TenTheLoai + ",";
             }
-            tlSach = tlSach.Remove(tlSach.Length - 1, 1) + ".";
+            if(tlSach == "")
+            {
+                return "Chưa cập nhật";
+            }
+            tlSach = tlSach.Replace(tlSach[tlSach.Length-1], '.');
             return tlSach;
         } 
 

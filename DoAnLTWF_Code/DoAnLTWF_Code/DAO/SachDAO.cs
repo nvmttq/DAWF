@@ -56,7 +56,7 @@ namespace DoAnLTWF_Code.DAO
         public List<Sach> timKiemSach(string keywords, string op)
         {
 
-            string query = $"EXEC searchBookWithOption @keyWord = NN'{keywords}' , @op = NN'{op}'";
+            string query = $"EXEC searchBookWithOption @keyWord = N'{keywords}' , @op = N'{op}'";
 
             DataTable data = DataProvider.Instance.ExcuteQuery(query, null);
 
@@ -126,6 +126,21 @@ namespace DoAnLTWF_Code.DAO
             string query = $"USP_InsertBook @idSach = N'{s.IdSach}', @tenSach = N'{s.TenSach}', @tenTacGia = N'{s.TenTacGia}', @nhaXuatBan = N'{s.NhaXuatBan}', @namXuatBan = N'{s.NamXuatBan}', @soTrang = N'{s.SoTrang}', @soLuong = N'{s.SoLuong}', @op = N'{op}'";
 
             int dt = DataProvider.Instance.ExcuteNonQuery(query);
+        }
+
+
+        public string getIdBookPlaceholder(string old, string id)
+        {
+            string query = $"EXEC USP_getIdSachPlaceHolder @idSach ='{id}'";
+            DataTable dt = DataProvider.Instance.ExcuteQuery(query);
+            
+            if(dt.Rows.Count > 0)
+            {
+                Sach s = new Sach(dt.Rows[0]);
+                return s.IdSach;
+            }
+
+            return old;
         }
     }
 }

@@ -74,6 +74,8 @@ namespace DoAnLTWF_Code
             this.txtTaiKhoan.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTaiKhoan.Size = new System.Drawing.Size(245, 23);
             this.txtTaiKhoan.TabIndex = 1;
+            this.txtTaiKhoan.Text = "thuthu";
+            this.txtTaiKhoan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Enter_Login);
             // 
             // lbTaiKhoan
             // 
@@ -102,7 +104,9 @@ namespace DoAnLTWF_Code
             this.txtMatKhau.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtMatKhau.Size = new System.Drawing.Size(245, 23);
             this.txtMatKhau.TabIndex = 1;
+            this.txtMatKhau.Text = "thuthu";
             this.txtMatKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMatKhau_KeyDown);
+            this.txtMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Enter_Login);
             // 
             // lbMatKhau
             // 
@@ -164,6 +168,7 @@ namespace DoAnLTWF_Code
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(407, 236);
             this.Controls.Add(this.panel4);
+            this.MaximizeBox = false;
             this.Name = "frmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";

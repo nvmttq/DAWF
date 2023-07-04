@@ -12,26 +12,29 @@ namespace DoAnLTWF_Code
 {
     public partial class frmSinhVien : Form
     {
-        public frmSinhVien()
+        private User user_current = null;
+        public frmSinhVien(User u)
         {
             InitializeComponent();
+            user_current = u;
+            mnuUser.Text = "Hello, " + u.Fname + " " + u.Lname;
         }
 
         private void frmSinhVien_Load(object sender, EventArgs e)
         {
-            ListBookUC[] lists = new ListBookUC[20];
+            
             List<Sach> listSach= new List<Sach>();
             listSach = SachDAO.Instance.listSach();
-
+            ListBookUC[] lists = new ListBookUC[listSach.Count];
             for (int i = 0; i < listSach.Count; i++)
             {
 
                 // add data here
-                List<TheLoai> listTlSach = TheLoaiDAO.Instance.getTheLoaiCuaSach(lists[i].IdSach);
+                List<TheLoai> listTlSach = TheLoaiDAO.Instance.getTheLoaiCuaSach(listSach[i].IdSach);
                 string tlSach = TheLoaiDAO.Instance.ListTheLoaiToString(listTlSach);
 
                 lists[i] = new ListBookUC();
-                lists[i].Tieude = listSach[i].TenSach;
+                lists[i].Tieude = listSach[i].TenSach.ToString();
                 lists[i].TheLoai = tlSach;
                 lists[i].ConLai = listSach[i].SoLuong.ToString();
                 lists[i].IdSach = listSach[i].IdSach;
@@ -44,6 +47,11 @@ namespace DoAnLTWF_Code
         private void frmSinhVien_Resize(object sender, EventArgs e)
         {
             pnTimKiem.Left = (pnTimKiem.Parent.Width - pnTimKiem.Width) / 2;
+        }
+
+        private void mnuLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

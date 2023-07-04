@@ -41,9 +41,9 @@ namespace DoAnLTWF_Code
             this.pnHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.helloUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUser = new System.Windows.Forms.ToolStripMenuItem();
             this.chỉnhSửaThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnMain.SuspendLayout();
@@ -168,33 +168,34 @@ namespace DoAnLTWF_Code
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.helloUserToolStripMenuItem});
+            this.mnuUser});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(161, 32);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // helloUserToolStripMenuItem
+            // mnuUser
             // 
-            this.helloUserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuUser.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chỉnhSửaThôngTinToolStripMenuItem,
-            this.đăngXuấtToolStripMenuItem});
-            this.helloUserToolStripMenuItem.Name = "helloUserToolStripMenuItem";
-            this.helloUserToolStripMenuItem.Size = new System.Drawing.Size(88, 28);
-            this.helloUserToolStripMenuItem.Text = "Hello, User !!!";
+            this.mnuLogout});
+            this.mnuUser.Name = "mnuUser";
+            this.mnuUser.Size = new System.Drawing.Size(88, 28);
+            this.mnuUser.Text = "Hello, User !!!";
             // 
             // chỉnhSửaThôngTinToolStripMenuItem
             // 
             this.chỉnhSửaThôngTinToolStripMenuItem.Name = "chỉnhSửaThôngTinToolStripMenuItem";
-            this.chỉnhSửaThôngTinToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.chỉnhSửaThôngTinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chỉnhSửaThôngTinToolStripMenuItem.Text = "Chỉnh sửa thông tin";
             // 
-            // đăngXuấtToolStripMenuItem
+            // mnuLogout
             // 
-            this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            this.mnuLogout.Name = "mnuLogout";
+            this.mnuLogout.Size = new System.Drawing.Size(180, 22);
+            this.mnuLogout.Text = "Đăng xuất";
+            this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
             // 
             // panel1
             // 
@@ -249,9 +250,9 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Panel pnHeader;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem helloUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuUser;
         private System.Windows.Forms.ToolStripMenuItem chỉnhSửaThôngTinToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuLogout;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnContent;
