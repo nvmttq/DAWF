@@ -189,6 +189,7 @@ namespace DoAnLTWF_Code
             this.chỉnhSửaThôngTinToolStripMenuItem.Name = "chỉnhSửaThôngTinToolStripMenuItem";
             this.chỉnhSửaThôngTinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chỉnhSửaThôngTinToolStripMenuItem.Text = "Chỉnh sửa thông tin";
+            this.chỉnhSửaThôngTinToolStripMenuItem.Click += new System.EventHandler(this.chỉnhSửaThôngTinToolStripMenuItem_Click);
             // 
             // mnuLogout
             // 

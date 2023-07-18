@@ -2,20 +2,22 @@
 using DoAnLTWF_Code.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using ZXing;
 
 namespace DoAnLTWF_Code
 {
     public partial class frmQuanThu : Form
+
     {
+
         public string link = @"Data Source=DESKTOP-5TIPTVB;Initial Catalog=QuanLyThuVien;Integrated Security=True";
         private User user_current = null;
+        private string idAccNeed = "";
+        private bool check_choose_book = false;
         public frmQuanThu(User u)
         {
             InitializeComponent();
@@ -29,93 +31,16 @@ namespace DoAnLTWF_Code
         int tienphat = 0;
         int idthe;
         int soluongsachtra;
-        private void CallSach()
-        {
-            SqlConnection sql = new SqlConnection(link);
-            try
-            {
-                if (sql.State == ConnectionState.Closed)
-                    sql.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select* from Sach";
-
-            cmd.Connection = sql;
-
-            SqlDataReader read = cmd.ExecuteReader();
-            while (read.Read())
-            {
-                string idsach = read.GetString(0);
-                string tensach = read.GetString(1);
-                string tentacgia = read.GetString(2);
-                string nxb = read.GetString(3);
-                int namxb = read.GetInt32(4);
-                int sotrang = read.GetInt32(5);
-                int soluong = read.GetInt32(6);
-                Sach s = new Sach(idsach, tensach, tentacgia, nxb, namxb, sotrang, soluong);
-                //MessageBox.Show(idsach);
-                sach.Add(s);
-            }
-        }
-        private void CallThanhvien()
-        {
-            SqlConnection sql = new SqlConnection(link);
-            try
-            {
-                if (sql.State == ConnectionState.Closed)
-                    sql.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select* from Thanhvien";
-
-            cmd.Connection = sql;
-
-            SqlDataReader read = cmd.ExecuteReader();
-            while (read.Read())
-            {
-                string id = read.GetString(0);
-                string hoten = read.GetString(1) + read.GetString(2);
-                DateTime ngaysinh = read.GetDateTime(3);
-                string email = read.GetString(4);
-                string phone = read.GetString(5);
-                //string bank = (read.GetString(6) == null ? "" : read.GetString(6));
-                ThanhVien t = new ThanhVien(id, hoten, ngaysinh, email, phone, "");
-                thanhvien.Add(t);
-            }
-
-        }
-        private void label20_Click(object sender, EventArgs e)
-        {
-
-        }
-
+   
+    
 
         private void FMain_Load(object sender, EventArgs e)
         {
-            CallSach();
-           // cbMassach.DataSource = sach;
-            //MessageBox.Show(sach[0].idSach);
-            //cbMassach.DisplayMember = "idsach";
-
-            //CallThanhvien();
 
             DateTime Ngaymuon = dtpNgaymuon.Value;
             DateTime Ngaytra = Ngaymuon.AddDays(7);
 
             dtpHantra.Value = Ngaytra;
-
-
-
         }
 
 
@@ -143,11 +68,7 @@ namespace DoAnLTWF_Code
 
         private void btnSuaS_Click(object sender, EventArgs e)
         {
-            Sachmuon sua = muonsach.FirstOrDefault(s => s.idS == txtMaSach.Text);
-            sua.soluongS = Convert.ToInt32(tbSoluong.Text);
-
-            DanhSachMuon.DataSource = null;
-            DanhSachMuon.DataSource = muonsach;
+            
 
             tbSoluong.Enabled = true;
             button2.Enabled = false;
@@ -157,32 +78,8 @@ namespace DoAnLTWF_Code
             btnPrint.Enabled = false;
         }
 
-        private void DanhSachMuon_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow r = DanhSachMuon.Rows[e.RowIndex];
-                txtMaSach.Text = r.Cells["idS"].Value.ToString();
-                tbTensach.Text = r.Cells["tenS"].Value.ToString();
-                tbTacgia.Text = r.Cells["tentacgiaS"].Value.ToString();
-                tbSoluong.Text = r.Cells["soluongS"].Value.ToString();
-                txtMaSach.Text = r.Cells["idS"].Value.ToString();
-            }
-        }
-
-        private void DanhSachMuon_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow r = DanhSachMuon.Rows[e.RowIndex];
-                tbTensach.Text = r.Cells["tenS"].Value.ToString();
-                tbTacgia.Text = r.Cells["tentacgiaS"].Value.ToString();
-                tbSoluong.Text = r.Cells["soluongS"].Value.ToString();
-                txtMaSach.Text = r.Cells["idS"].Value.ToString();
-            }
-        }
+   
 
         private void btnXoaS_Click(object sender, EventArgs e)
         {
@@ -206,7 +103,7 @@ namespace DoAnLTWF_Code
                 MessageBox.Show(ex.Message);
             }
 
-            string qrthe = "select idThe from TheThuVien where idThanhvien='" + tbIdThe.Text + "'";
+            string qrthe = "select idThe from TheThuVien where idThe ='" + tbIdThe.Text + "'";
             SqlCommand cmd1 = new SqlCommand(qrthe);
             cmd1.Connection = sql;
             string idthe;
@@ -281,12 +178,11 @@ namespace DoAnLTWF_Code
                     cmd.CommandType = CommandType.Text;
                     string muon = dtpNgaymuon.Value.ToString("yyyy-MM-dd HH:mm:ss");
                     string tra = dtpHantra.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                    cmd.CommandText = "insert into chitietmuonsach values('" + tmp.idS + "'," + tmp.soluongS + ",'" + muon + "','" + tra + "',0," + idmuon + ")";
+                    cmd.CommandText = $"INSERT INTO ChiTietMuonSach VALUES('{idmuon}', '{tmp.idS}', '{tmp.soluongS}', '{muon}', '{tra}', '0')";
                     cmd.Connection = sql;
                     try
                     {
                         cmd.ExecuteNonQuery();
-                        //throw new Exception("Save thành công");
                     }
                     catch (Exception ex)
                     {
@@ -295,93 +191,33 @@ namespace DoAnLTWF_Code
                 }
             }
             else
-                MessageBox.Show("save lõ");
+                MessageBox.Show("save không thành công");
 
 
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveDanhsachmuon();
-            Ctmuonsach();
-        }
+            DialogResult res = MessageBox.Show($"Xác nhận thêm sách mượn cho : \nId Thẻ : {tbIdThe.Text}.\nHọ Tên : {tbTendocgia.Text}.\nSĐT: {tbSdt.Text}.", "Xác nhận thông tin người mượn", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-        private void CallMaMuon()
-        {
-            SqlConnection sql = new SqlConnection(link);
+            if (res == DialogResult.No) return;
+
             try
             {
-                if (sql.State == ConnectionState.Closed)
-                    sql.Open();
-            }
-            catch (Exception ex)
+                //if(ListMuonDAO.Instance.countSachMuon(muonsach) > 3)
+                //{
+                //    throw new Exception("Độc giả không được mượn quá 3 cuốn sách");
+                //}
+
+                saveDanhsachmuon();
+                Ctmuonsach();
+            } catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            string qr = "select tv.idThanhVien, tv.Fname+' '+tv.Lname  as ten,tv.Phone,ds.soLuong,t.idThe from DanhSachMuon ds, TheThuVien t, ThanhVien tv where idMuonSach = " + tbSeach_Mamuon.Text + " and ds.idThe = t.idThe and tv.idThanhVien = t.idThanhVien";
-            SqlCommand cmd = new SqlCommand(qr);
-            cmd.Connection = sql;
-            SqlDataReader read = cmd.ExecuteReader();
-            try
-            {
-                if (read.Read())
-                {
-                    tbMamuon.Text = tbSeach_Mamuon.Text;
-                    tbMadg.Text = read.GetString(0);
-                    tbTendocgia.Text = read.GetString(1);
-                    tbSdtmuon.Text = read.GetString(2);
-                    //MessageBox.Show(read.GetInt32(4).ToString());
-                    soluongsachtra = read.GetInt32(3);
-                    idthe = Convert.ToInt32(read.GetString(4));
-                    //string s = read.GetString(4);
-                    //MessageBox.Show(idthe.ToString());
-                }
-                else
-                    throw new Exception("Không tìm thấy mã sách");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+        }
 
-        }
-        private void CallDanhsachmuon()
-        {
-            SqlConnection sql = new SqlConnection(link);
-            try
-            {
-                if (sql.State == ConnectionState.Closed)
-                    sql.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            string qr = "select s.idSach,s.tenSach,s.tenTacGia,ct.soLuong,ct.soLanGiaHan,ct.ngayMuon,ct.ngayHenTra from ChiTietMuonSach ct,Sach s where idMuonsach = " + tbSeach_Mamuon.Text + " and ct.idSach = s.idSach";
-            SqlCommand cmd = new SqlCommand(qr);
-            cmd.Connection = sql;
-            SqlDataReader read = cmd.ExecuteReader();
-            while (read.Read())
-            {
-                ListViewItem item = new ListViewItem(read.GetString(0));
-                item.SubItems.Add(read.GetString(1));
-                item.SubItems.Add(read.GetString(2));
-                item.SubItems.Add(read.GetInt32(3).ToString());
-                item.SubItems.Add(read.GetInt32(4).ToString());
-                ltSach.Items.Add(item);
-                dNgaymuon.Value = read.GetDateTime(5);
-                dNgaytra.Value = read.GetDateTime(6);
-                tienphat = read.GetInt32(4) * 100000;
-            }
-        }
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            //Tìm kiếm phiếu mượn theo mã
-            //Gọi thông tin của độc giả
-            CallMaMuon();
-            //Gọi danh sách các sách mượn của phiếu
-            CallDanhsachmuon();
+     
 
-        }
         private void SaveDanhSachtra()
         {
             SqlConnection sql = new SqlConnection(link);
@@ -450,7 +286,7 @@ namespace DoAnLTWF_Code
             {
                 MessageBox.Show(ex.Message);
             }
-            string qr = "select soLanGiaHan from ChiTietMuonSach where idMuonsach = " + tbSeach_Mamuon.Text + "";
+            string qr = "select soLanGiaHan from ChiTietMuonSach where idMuonsach = " + tbIdThe_TS.Text + "";
             SqlCommand cmd = new SqlCommand(qr);
             cmd.Connection = sql;
             int solangiahan;
@@ -462,7 +298,7 @@ namespace DoAnLTWF_Code
                     solangiahan = read.GetInt32(0);
                     read.Close();
                     solangiahan += 1;
-                    string qr1 = "Update ChiTietMuonSach set soLanGiaHan=" + solangiahan + " where idmuonsach=" + tbSeach_Mamuon.Text + "";
+                    string qr1 = "Update ChiTietMuonSach set soLanGiaHan=" + solangiahan + " where idmuonsach=" + tbIdThe_TS.Text + "";
                     SqlCommand cmd1 = new SqlCommand(qr1);
                     cmd1.Connection = sql;
                     try
@@ -577,15 +413,24 @@ namespace DoAnLTWF_Code
 
 
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            frmChonSach cs = new frmChonSach(muonsach);
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    if(tbIdThe.Text == "")
+        //    {
+        //        MessageBox.Show("Vui lòng chọn số thẻ trước khi chọn sách");
+        //        return;
+        //    }
+        //    frmChonSach cs = new frmChonSach(muonsach, idAccNeed);
+        //    DialogResult res = cs.ShowDialog();
+        //    if (res == DialogResult.OK)
+        //    {
+        //        muonsach = cs.muonsach;
+        //        DanhSachMuon.DataSource = null;
+        //        DanhSachMuon.DataSource = muonsach;
 
-            if(cs.ShowDialog() == DialogResult.OK)
-            {
-                DanhSachMuon.DataSource = cs.muonsach;
-            }
-        }
+        //        check_choose_book = true;
+        //    }
+        //}
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
@@ -607,6 +452,7 @@ namespace DoAnLTWF_Code
             tbSoluong.Text = "";
             tbTacgia.Text = "";
             tbTensach.Text = "";
+            
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)
@@ -618,7 +464,7 @@ namespace DoAnLTWF_Code
 
         private void btnTKMM_Click(object sender, EventArgs e)
         {
-            muonsach = ListMuonDAO.Instance.getListMuonSach(tbIdMuon.Text, tbIdThe.Text);
+            muonsach = ListMuonDAO.Instance.getListMuonSach(tbIdMuon.Text, null);
             DanhSachMuon.DataSource = muonsach;
 
             string idAcc = "";
@@ -627,15 +473,522 @@ namespace DoAnLTWF_Code
                 idAcc = sm.idThe.ToString();
             }
 
-            
+            idAccNeed = idAcc;
             Account acc = AccountDAO.Instance.getAccountWithIdThe(idAcc);
-            MessageBox.Show(acc.IdThanhVien);
             User u = UserDAO.Instance.getUserWithId(acc.IdThanhVien);
             tbIdThe.Text = u.IdThe;
             tbSdt.Text = u.Phone;
             tbTendg.Text = u.Fname + " " + u.Lname;
         }
 
- 
+        private void mnuInfo_Click(object sender, EventArgs e)
+        {
+            InfoUser iu = new InfoUser(user_current);
+            iu.Show();
+        }
+
+        private void btnSaveEdit_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Hành động này sẽ chỉnh sửa thông tin hiện có. Bạn có chắc muốn chỉnh sửa không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.No) return;
+
+            try
+            {
+                if (txtMaSach.Text == "") throw new Exception("Vui lòng chọn sách cần chỉnh sửa !!");
+
+                Sachmuon sua = muonsach.FirstOrDefault(s => s.idS == txtMaSach.Text);
+                sua.soluongS = Convert.ToInt32(tbSoluong.Text);
+
+                DanhSachMuon.DataSource = null;
+                DanhSachMuon.DataSource = muonsach;
+
+                tbSoluong.Enabled = false;
+                button2.Enabled = true;
+                btnSave.Enabled = true;
+                btnReset.Enabled = true;
+                btnXoaS.Enabled = true;
+                btnPrint.Enabled = true;
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnTKIDTHE_Click(object sender, EventArgs e)
+        {
+            DialogResult res = DialogResult.No;
+            
+            if(check_choose_book == true)
+            {
+                res = MessageBox.Show("Bạn có muốn giữ lại danh sách sách đã chọn ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+            if(res == DialogResult.No)
+            {
+                muonsach = ListMuonDAO.Instance.getListMuonSachIdThe(tbIdThe.Text);
+                if(muonsach.Count > 0) DanhSachMuon.DataSource = muonsach;
+            }
+
+            Account acc = AccountDAO.Instance.getAccountWithIdThe(tbIdThe.Text);
+            if(acc == null)
+            {
+                MessageBox.Show("Không tìm thấy mã thẻ !!!");
+                return;
+            }
+            idAccNeed = acc.IdThe;
+            User u = UserDAO.Instance.getUserWithId(acc.IdThanhVien);
+            tbSdt.Text = u.Phone;
+            tbTendg.Text = u.Fname + " " + u.Lname;
+            txtMaSach.Text = "";
+            tbSoluong.Text = "";
+            tbTacgia.Text = "";
+            tbTensach.Text = "";
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DanhSachMuon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                MessageBox.Show(e.RowIndex.ToString());
+                DataGridViewRow slRow = DanhSachMuon.Rows[e.RowIndex];
+
+                tbTensach.Text = slRow.Cells["tenS"].Value.ToString();
+                tbTacgia.Text = slRow.Cells["tentacgiaS"].Value.ToString();
+                tbSoluong.Text = slRow.Cells["soluongS"].Value.ToString();
+                txtMaSach.Text = slRow.Cells["idS"].Value.ToString();
+            }
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        //KIET LE 
+        private void QLDanhsach_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow r = QLDanhsach.Rows[e.RowIndex];
+                if (cboLoc.Text == "Phiếu trả")
+                {
+                    int id = Convert.ToInt32(r.Cells[0].Value);
+                    ChiTietMuonTra tmp = new ChiTietMuonTra(id, 0);
+                    this.Hide();
+                    tmp.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    int id = Convert.ToInt32(r.Cells[0].Value);
+                    ChiTietMuonTra tmp = new ChiTietMuonTra(id, 1);
+                    this.Hide();
+                    tmp.ShowDialog();
+                    this.Show();
+                }
+            }
+
+        }
+        public void savetrasach(string qr)
+        {
+            SqlConnection sql = new SqlConnection(link);
+            try
+            {
+                if (sql.State == ConnectionState.Closed)
+                    sql.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            SqlCommand cmd = new SqlCommand(qr);
+            cmd.Connection = sql;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                throw new Exception("Update thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void data_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = data.Rows[e.RowIndex];
+                if (row != null)
+                {
+                    string qr = "Update ChiTietMuonSach set tinhtrang=1 where idMuonSach=" + row.Cells[0].Value + " and idSach='" + row.Cells[1].Value + "'";
+                    //MessageBox.Show(row.Cells[0].Value + " " + row.Cells[1].Value);
+                    DateTime n = DateTime.Now;
+                    if (n > (DateTime)row.Cells[6].Value)
+                    {
+                        MessageBox.Show("Bạn trả đã trả quá hạn");
+                    }
+                    savetrasach(qr);
+                }
+            }
+        }
+
+        private void btnSearchTheTra_Click(object sender, EventArgs e)
+        {
+            DialogResult res = DialogResult.No;
+
+            if (check_choose_book == true)
+            {
+                res = MessageBox.Show("Bạn có muốn giữ lại danh sách sách đã chọn ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+            if (res == DialogResult.No)
+            {
+                muonsach = ListMuonDAO.Instance.getListMuonSachIdThe(tbIdThe_TS.Text);
+                if (muonsach.Count > 0) DanhSachMuon.DataSource = muonsach;
+            }
+
+            Account acc = AccountDAO.Instance.getAccountWithIdThe(tbIdThe_TS.Text);
+            if (acc == null)
+            {
+                MessageBox.Show("Không tìm thấy mã thẻ !!!");
+                return;
+            }
+            idAccNeed = acc.IdThe;
+            User u = UserDAO.Instance.getUserWithId(acc.IdThanhVien);
+            tbMadg.Text = u.IdThanhVien;
+            tbTendocgia.Text = u.Fname + " " + u.Lname;
+            tbSdtTra.Text = u.Phone;
+        }
+
+        private void TabMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QLMuon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QLDanhsach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbContent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_Search_mas_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TraSach_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void data_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbMamuon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dNgaytra_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dNgaymuon_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbMadg_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbTendocgia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbSdtTra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbIdThe_TS_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DkMs_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DanhSachMuon_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtMaSach_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbIdMuon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbTacgia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbTensach_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbSoluong_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbIdThe_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpHantra_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpNgaymuon_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbTendg_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbSdt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TraCuuSach_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNhapLai_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbMaKe_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbTang_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbSach_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dtgvTLXN_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void mnuUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

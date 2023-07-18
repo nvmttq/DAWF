@@ -49,8 +49,10 @@ namespace DoAnLTWF_Code
                     dg.ShowDialog();
                 } else if(sucess.Mode.ToString() == "2")
                 {
-                    frmQuanThu qt = new frmQuanThu(sucess);
-                    qt.ShowDialog();
+                    //frmQuanThu qt = new frmQuanThu(sucess);
+                    //qt.ShowDialog();
+                    frmts ts = new frmts(sucess);
+                    ts.ShowDialog();
                 } else
                 {
                     frmSinhVien sv = new frmSinhVien(sucess);

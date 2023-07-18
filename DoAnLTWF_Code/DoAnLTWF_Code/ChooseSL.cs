@@ -22,6 +22,10 @@ namespace DoAnLTWF_Code
             try
             {
                 soLuong = int.Parse(textBox1.Text);
+                if(soLuong <= 0)
+                {
+                    throw new Exception("Số lượng sách được chọn phải ít nhất 1 cuốn !!!");
+                }
                 DialogResult = DialogResult.OK;
                 this.Close();
             } catch (Exception ex)

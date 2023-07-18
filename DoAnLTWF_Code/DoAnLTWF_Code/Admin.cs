@@ -1,10 +1,12 @@
 ﻿using DoAnLTWF_Code.DAO;
 using DoAnLTWF_Code.DTO;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,13 +23,7 @@ namespace DoAnLTWF_Code
         }
         #region events_MAIN
 
-        private void frmAdmin_Resize(object sender, EventArgs e)
-        {
-            Panel pn = pnDanhSachMuon;
-            pn.Width = (pn.Parent.Width / 2);
-            Panel pndst = pnDanhSachTra;
-            pndst.Width = (pn.Parent.Width / 2);
-        }
+
 
         private void frmAdmin_Load(object sender, EventArgs e)
         {
@@ -35,20 +31,62 @@ namespace DoAnLTWF_Code
             listSach();
             listUser("ALL1");
 
+            loadYeuCauSach();
+            loadDanhSachMuonTra();
+
             cbTKS.SelectedIndex = 0;
             cbSearchUser.SelectedIndex = 0;
 
             foreach (Control ctr in pnInfoSach.Controls)
             {
-               if(ctr.Name != "flpnAcion") ctr.Enabled = true;
+               if(ctr.Name != "flpnAcion") ctr.Enabled = false;
 
             }
 
-            foreach (Control ctr in pnInfoSach.Controls)
+            foreach (Control ctr in pnInfo.Controls)
             {
-                ctr.Enabled = false;
+                if(ctr.Name != "pnAction") ctr.Enabled = false;
 
             }
+
+
+            // HOME 
+            List<Sach> listSachShow = new List<Sach>();
+            listSachShow = SachDAO.Instance.listSach();
+            ListBookUC[] lists = new ListBookUC[listSachShow.Count];
+            for (int i = 0; i < listSachShow.Count; i++)
+            {
+
+                // add data here
+                List<TheLoai> listTlSach = TheLoaiDAO.Instance.getTheLoaiCuaSach(listSachShow[i].IdSach);
+                string tlSach = TheLoaiDAO.Instance.ListTheLoaiToString(listTlSach);
+
+                lists[i] = new ListBookUC();
+                lists[i].Tieude = listSachShow[i].TenSach.ToString();
+                lists[i].TheLoai = tlSach;
+                lists[i].ConLai = listSachShow[i].SoLuong.ToString();
+                lists[i].IdSach = listSachShow[i].IdSach;
+                lists[i].Margin = new Padding(30, 5, 20, 15);
+
+                flpnSach.Controls.Add(lists[i]);
+            }
+
+
+            // TABPAGE THONG KE
+            List<string> day = new List<string>(), month = new List<string>(), year = new List<string>();
+            for(int i = 1; i <= 31; i++)
+            {
+                cbTKNgay.Items.Add(i.ToString());
+                cbTKNam.Items.Add((2000+i).ToString());
+                if(i <= 12)
+                {
+                    cbTKThang.Items.Add(i.ToString());
+                }
+                
+            }
+
+            
+            dtgvTKM.DataSource = ListMuonDAO.Instance.ThongKeSachMuon();
         }
 
         private void typeObject_Click(object sender, EventArgs e)
@@ -384,7 +422,7 @@ namespace DoAnLTWF_Code
                 {
                     if (ctr.Name != name && ctr.Name != "btnSave" && ctr.Name != "btnCancel")
                     {
-                        ctr.Enabled = !ctr.Enabled;
+                        ctr.Enabled = false;
                     }
                 }
             }
@@ -452,6 +490,375 @@ namespace DoAnLTWF_Code
         {
             this.Close();
         }
+
+        private void mnuInfo_Click(object sender, EventArgs e)
+        {
+            InfoUser iu = new InfoUser(user_current);
+            iu.ShowDialog();
+        }
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+            string ngay = (cbTKNgay.SelectedItem == null ? "" : cbTKNgay.SelectedItem.ToString());
+            string thang = (cbTKThang.SelectedItem == null ? "" : cbTKThang.SelectedItem.ToString());
+            string nam = (cbTKNam.SelectedItem == null ? "" : cbTKNam.SelectedItem.ToString());
+            List<ChiTietSachMuon> list1 = ListMuonDAO.Instance.ThongKeSachMuon(ngay, thang, nam);
+            List<ChiTietSachTra> list2 = ListMuonDAO.Instance.ThongKeSachTra(ngay, thang, nam);
+
+            dtgvTKM.DataSource = null;
+            dtgvTKM.DataSource = list1;
+            dtgvTKT.DataSource = null;
+            dtgvTKT.DataSource = list2;
+        }
+
+
+
+        //thong ke 
+
+        private List<String> header = new List<string>();
+        #region method
+        private void ExcelFileMuon()
+        {
+            string filepath = "";
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
+
+            if (save.ShowDialog() == DialogResult.OK) filepath = save.FileName;
+
+
+            if (string.IsNullOrEmpty(filepath))
+            {
+                MessageBox.Show("Đường dẫn không hợp lệ hoặc trống !!");
+                return;
+            }
+
+            try
+            {
+                using (ExcelPackage p = new ExcelPackage())
+                {
+                    p.Workbook.Worksheets.Add("DanhSachMuon");
+
+                    ExcelWorksheet ws = p.Workbook.Worksheets[1];
+                    header = new List<string>() {
+                        "ID Mượn",
+                        "ID Sách",
+                        "Số Lượng",
+                        "Ngày Mượn",
+                        "Ngày Hẹn Trả",
+                        "Số Lần Gia Hạn"
+                    };
+
+                    ws.Name = "Danh Sách Mượn";
+                    ws.Cells[1, 1].Value = "Thống kê danh sách mượn";
+                    ws.Cells[1, 1, 1, header.Count].Merge = true;
+                    ws.Cells[1, 1, 1, header.Count].Style.Font.Bold = true;
+                    ws.Cells[1, 1, 1, header.Count].Style.Font.Size = 20;
+                    ws.Cells[1, 1, 1, header.Count].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+
+
+                    int col_index = 1;
+                    int row_index = 2;
+
+                    DataGridView dtgv = dtgvTKM;
+
+                    foreach (string s in header)
+                    {
+                        var cell = ws.Cells[row_index, col_index];
+
+                        cell.Value = s;
+                        col_index++;
+
+
+                    }
+
+
+                    List<ChiTietSachMuon> sms = new List<ChiTietSachMuon>();
+                    foreach (DataGridViewRow row in dtgv.Rows)
+                    {
+                        ChiTietSachMuon sm = new ChiTietSachMuon(row);
+                        sms.Add(sm);
+                    }
+
+                    foreach (ChiTietSachMuon sm in sms)
+                    {
+                        row_index++;
+                        col_index = 1;
+                        ws.Cells[row_index, col_index++].Value = sm.idMuon;
+                        ws.Cells[row_index, col_index++].Value = sm.idSach;
+                        ws.Cells[row_index, col_index++].Value = sm.soLuong;
+                        ws.Cells[row_index, col_index++].Value = sm.ngayMuon.ToShortDateString();
+                    //    ws.Cells[row_index, col_index++].Value = sm.ngayHenTra.ToShortDateString();
+                        ws.Cells[row_index, col_index++].Value = sm.soLanGiaHan;
+
+                    }
+
+                    Byte[] bin = p.GetAsByteArray();
+                    File.WriteAllBytes(filepath, bin);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            MessageBox.Show($"Lưu file thành công vui lòng kiểm tra đường dẫn\n{filepath}");
+        }
+
+        private void ExcelFileTra()
+        {
+            string filepath = "";
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
+
+            if (save.ShowDialog() == DialogResult.OK) filepath = save.FileName;
+
+
+            if (string.IsNullOrEmpty(filepath))
+            {
+                MessageBox.Show("Đường dẫn không hợp lệ hoặc trống !!");
+                return;
+            }
+
+            try
+            {
+                using (ExcelPackage p = new ExcelPackage())
+                {
+                    p.Workbook.Worksheets.Add("DanhSachTra");
+
+                    ExcelWorksheet ws = p.Workbook.Worksheets[1];
+                    header = new List<string>() {
+                        "ID Trả",
+                        "ID Sách",
+                        "Số Lượng",
+                        "Ngày Trả",
+                        "Số Tiền Phạt",
+                    };
+
+                    ws.Name = "Danh Sách Trả";
+                    ws.Cells[1, 1].Value = "Thống kê danh sách trả";
+                    ws.Cells[1, 1, 1, header.Count].Merge = true;
+                    ws.Cells[1, 1, 1, header.Count].Style.Font.Bold = true;
+                    ws.Cells[1, 1, 1, header.Count].Style.Font.Size = 20;
+                    ws.Cells[1, 1, 1, header.Count].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+
+
+                    int col_index = 1;
+                    int row_index = 2;
+
+                    DataGridView dtgv = dtgvTKT;
+
+                    foreach (string s in header)
+                    {
+                        var cell = ws.Cells[row_index, col_index];
+
+                        cell.Value = s;
+                        col_index++;
+
+
+                    }
+
+
+                    List<ChiTietSachTra> sms = new List<ChiTietSachTra>();
+                    foreach (DataGridViewRow row in dtgv.Rows)
+                    {
+                        ChiTietSachTra sm = new ChiTietSachTra(row);
+                        sms.Add(sm);
+                    }
+
+                    foreach (ChiTietSachTra sm in sms)
+                    {
+                        row_index++;
+                        col_index = 1;
+                        ws.Cells[row_index, col_index++].Value = sm.idTra;
+                        ws.Cells[row_index, col_index++].Value = sm.idSach;
+                        ws.Cells[row_index, col_index++].Value = sm.soLuong;
+                        ws.Cells[row_index, col_index++].Value = sm.ngayTra.ToShortDateString();
+                        ws.Cells[row_index, col_index++].Value = sm.soTienPhat;
+
+                    }
+
+                    Byte[] bin = p.GetAsByteArray();
+                    File.WriteAllBytes(filepath, bin);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            MessageBox.Show($"Lưu file thành công vui lòng kiểm tra đường dẫn\n{filepath}");
+        }
+        #endregion
+        #region EVENTS
+
+        private void loadDanhSachMuonTra()
+        {
+            dtgvTKM.DataSource = ListMuonDAO.Instance.ThongKeSachMuon(null, null, null);
+            dtgvTKT.DataSource = ListMuonDAO.Instance.ThongKeSachTra(null, null, null);
+
+        }
+        private void btnXuatDST_Click(object sender, EventArgs e)
+        {
+            //ExportDST exportExcel = new ExportDST();
+
+            //if(exportExcel.ShowDialog() == DialogResult.OK)
+            //{
+            //    header = exportExcel.headerColumn;
+            //}
+            ExcelFileTra();
+        }
+        private void btnXuatDSM_Click(object sender, EventArgs e)
+        {
+            //ExportDST exportExcel = new ExportDST();
+
+            //if(exportExcel.ShowDialog() == DialogResult.OK)
+            //{
+            //    header = exportExcel.headerColumn;
+            //}
+            ExcelFileMuon();
+        }
+        #endregion
+
+        //dsyeucau
+        private int idRowYeuCau = 0;
+        private List<YeuCau> listXacNhan = new List<YeuCau>();
+        private List<YeuCau> listYC = new List<YeuCau>();
+        private YeuCau chooseCurrentYC = null, chooseCurrentXN = null;
+
+        #region method
+        // load
+        private void loadYeuCauSach()
+        {
+            listYC = YeuCauDAO.Instance.listYeuCauChuaXacNhan();
+            dtgvTLYC.DataSource = listYC;
+            dtgvTLYC.Rows[0].Selected = true;
+            cbYC.SelectedIndex = 0;
+            cbXN.SelectedIndex = 0;
+
+        }
+        #endregion
+        #region EVENTS
+
+        private void dtgvTLYC_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow slRow = dtgvTLYC.Rows[e.RowIndex];
+                string idYC = slRow.Cells["idYC"].Value.ToString();
+                string tenSach = slRow.Cells["tenSach"].Value.ToString();
+                string tenTacGia = slRow.Cells["tenTacGia"].Value.ToString();
+                DateTime ngayYC = DateTime.Parse(slRow.Cells["ngayYeucau"].Value.ToString());
+                int soLuong = int.Parse(slRow.Cells["soLuong"].Value.ToString());
+                chooseCurrentYC = new YeuCau(idYC, tenSach, tenTacGia, soLuong, ngayYC);
+            }
+        }
+        private void dtgvTLXN_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow slRow = dtgvTLYC.Rows[e.RowIndex];
+                string idYC = slRow.Cells["idYC"].Value.ToString();
+                string tenSach = slRow.Cells["tenSach"].Value.ToString();
+                string tenTacGia = slRow.Cells["tenTacGia"].Value.ToString();
+                DateTime ngayYC = DateTime.Parse(slRow.Cells["ngayYeucau"].Value.ToString());
+                int soLuong = int.Parse(slRow.Cells["soLuong"].Value.ToString());
+                chooseCurrentXN = new YeuCau(idYC, tenSach, tenTacGia, soLuong, ngayYC);
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+
+
+            for (int i = 0; i < listXacNhan.Count; i++)
+            {
+                if (listXacNhan[i].idYC == chooseCurrentYC.idYC)
+                {
+                    listYC.Add(listXacNhan[i]);
+                    listXacNhan.RemoveAt(i);
+                    dtgvTLXN.DataSource = null;
+                    dtgvTLXN.DataSource = listXacNhan;
+                    dtgvTLYC.DataSource = null;
+                    dtgvTLYC.DataSource = listYC;
+                    return;
+                }
+
+            }
+
+            MessageBox.Show("Không tìm thấy Yêu Cầu cần hủy !!!");
+
+        }
+
+        private void btnTKYC_Click(object sender, EventArgs e)
+        {
+            List<YeuCau> list = YeuCauDAO.Instance.searchListYeuCau(tbYC.Text, cbYC.SelectedItem.ToString());
+
+            dtgvTLYC.DataSource = null;
+            dtgvTLYC.DataSource = list;
+        }
+
+        private void btnXN_Click(object sender, EventArgs e)
+        {
+            List<YeuCau> list = YeuCauDAO.Instance.searchListXacNhanYeuCau(tbXN.Text, cbXN.SelectedItem.ToString());
+
+            dtgvTLXN.DataSource = null;
+            dtgvTLXN.DataSource = list;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Hành đồng này sẽ lưu lại danh xác mà bạn đã xác nhận. Bạn có muốn tiếp tục không ? ", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(res == DialogResult.Yes)
+            {
+                YeuCauDAO.Instance.doneYeuCau(listXacNhan);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnChon_Click(object sender, EventArgs e)
+        {
+            if (dtgvTLYC.SelectedRows == null)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần chọn !!");
+                return;
+            }
+
+            for (int i = 0; i < listYC.Count; i++)
+            {
+                if (listYC[i].idYC == chooseCurrentYC.idYC)
+                {
+                    listXacNhan.Add(chooseCurrentYC);
+                    listYC.RemoveAt(i);
+                    dtgvTLXN.DataSource = null;
+                    dtgvTLXN.DataSource = listXacNhan;
+                    dtgvTLYC.DataSource = null;
+                    dtgvTLYC.DataSource = listYC;
+
+
+                    return;
+                }
+            }
+
+            MessageBox.Show("Không tìm thấy Yêu Cầu cần thêm !!!");
+        }
+        #endregion
+
+        
+
+        //
+
+        
 
         
     }

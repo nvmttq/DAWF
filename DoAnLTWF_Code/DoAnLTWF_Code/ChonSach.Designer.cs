@@ -42,9 +42,6 @@ namespace DoAnLTWF_Code
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtgvMuon = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tentacgiaS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soluongS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -69,7 +66,7 @@ namespace DoAnLTWF_Code
             this.panel23.Location = new System.Drawing.Point(0, 0);
             this.panel23.Name = "panel23";
             this.panel23.Padding = new System.Windows.Forms.Padding(10);
-            this.panel23.Size = new System.Drawing.Size(476, 450);
+            this.panel23.Size = new System.Drawing.Size(476, 436);
             this.panel23.TabIndex = 2;
             // 
             // groupBox4
@@ -78,7 +75,7 @@ namespace DoAnLTWF_Code
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(10, 98);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(456, 342);
+            this.groupBox4.Size = new System.Drawing.Size(456, 328);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Danh sách";
@@ -95,7 +92,7 @@ namespace DoAnLTWF_Code
             this.dtgvSach.ReadOnly = true;
             this.dtgvSach.RowTemplate.Height = 25;
             this.dtgvSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgvSach.Size = new System.Drawing.Size(450, 320);
+            this.dtgvSach.Size = new System.Drawing.Size(450, 306);
             this.dtgvSach.TabIndex = 0;
             this.dtgvSach.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgvSach_CellMouseClick);
             // 
@@ -125,7 +122,7 @@ namespace DoAnLTWF_Code
             this.pnTKS.Controls.Add(this.cbTKS);
             this.pnTKS.Controls.Add(this.btnTKS);
             this.pnTKS.Controls.Add(this.txtTKS);
-            this.pnTKS.Location = new System.Drawing.Point(15, 21);
+            this.pnTKS.Location = new System.Drawing.Point(21, 22);
             this.pnTKS.Name = "pnTKS";
             this.pnTKS.Size = new System.Drawing.Size(377, 39);
             this.pnTKS.TabIndex = 3;
@@ -136,10 +133,9 @@ namespace DoAnLTWF_Code
             this.cbTKS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTKS.FormattingEnabled = true;
             this.cbTKS.Items.AddRange(new object[] {
-            "Thể loại",
             "Tác giả",
             "Sách",
-            "Nhà xuất bản"});
+            "ID Sách"});
             this.cbTKS.Location = new System.Drawing.Point(3, 9);
             this.cbTKS.Name = "cbTKS";
             this.cbTKS.Size = new System.Drawing.Size(83, 23);
@@ -166,10 +162,10 @@ namespace DoAnLTWF_Code
             // 
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(578, 0);
+            this.panel2.Location = new System.Drawing.Point(580, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(348, 450);
+            this.panel2.Size = new System.Drawing.Size(424, 436);
             this.panel2.TabIndex = 4;
             // 
             // groupBox1
@@ -178,7 +174,7 @@ namespace DoAnLTWF_Code
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 440);
+            this.groupBox1.Size = new System.Drawing.Size(424, 426);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin mượn";
@@ -187,53 +183,25 @@ namespace DoAnLTWF_Code
             // 
             this.dtgvMuon.AllowUserToOrderColumns = true;
             this.dtgvMuon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvMuon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.tentacgiaS,
-            this.soluongS});
             this.dtgvMuon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvMuon.Location = new System.Drawing.Point(3, 19);
             this.dtgvMuon.Name = "dtgvMuon";
             this.dtgvMuon.ReadOnly = true;
             this.dtgvMuon.RowTemplate.Height = 25;
             this.dtgvMuon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgvMuon.Size = new System.Drawing.Size(342, 418);
+            this.dtgvMuon.Size = new System.Drawing.Size(418, 404);
             this.dtgvMuon.TabIndex = 0;
             this.dtgvMuon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvMuon_CellClick);
-            this.dtgvMuon.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvMuon_CellContentClick);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "tenS";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Tên Sách";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // tentacgiaS
-            // 
-            this.tentacgiaS.DataPropertyName = "tentacgiaS";
-            this.tentacgiaS.HeaderText = "Tên Tác Giả";
-            this.tentacgiaS.Name = "tentacgiaS";
-            this.tentacgiaS.ReadOnly = true;
-            // 
-            // soluongS
-            // 
-            this.soluongS.DataPropertyName = "soluongS";
-            this.soluongS.HeaderText = "Số lượng mượn";
-            this.soluongS.MinimumWidth = 20;
-            this.soluongS.Name = "soluongS";
-            this.soluongS.ReadOnly = true;
-            this.soluongS.Width = 98;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnChon);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(475, 0);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(476, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(103, 450);
+            this.panel1.Size = new System.Drawing.Size(103, 436);
             this.panel1.TabIndex = 5;
             // 
             // btnSave
@@ -282,12 +250,14 @@ namespace DoAnLTWF_Code
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 450);
+            this.ClientSize = new System.Drawing.Size(1004, 436);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel23);
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "frmChonSach";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChonSach";
             this.Load += new System.EventHandler(this.frmChonSach_Load);
             this.panel23.ResumeLayout(false);
@@ -323,8 +293,5 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnChon;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tentacgiaS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn soluongS;
     }
 }

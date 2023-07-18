@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NE8Ca98zyWAT3AW1EW24iSh9XTIQd0kZyzjSC3HYkcBabWVudQ9Y8tZLEIg2XkkRSlgTDCjxu+YgMxSXETOvEg==",
+  "dgSpecHash": "TH5pCneYbr4S3ZAipZtRhdLwqqA7nTQ7UAl9UmVBmWakD+wlqgGywa2RZ3liiAZfrIWseRdjxlvKrstfGp21BQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj",
   "expectedPackageFiles": [
@@ -80,7 +80,8 @@
     "C:\\Users\\NVM\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\NVM\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\NVM\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\NVM\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\NVM\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\NVM\\.nuget\\packages\\zxing.net\\0.16.9\\zxing.net.0.16.9.nupkg.sha512"
   ],
   "logs": []
 }

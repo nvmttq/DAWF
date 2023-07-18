@@ -70,7 +70,7 @@ namespace DoAnLTWF_Code
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(70, 23);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "0";
+            this.textBox1.Text = "1";
             // 
             // ChooseSL
             // 

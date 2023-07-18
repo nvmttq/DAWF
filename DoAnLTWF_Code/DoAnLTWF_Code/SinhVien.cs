@@ -17,7 +17,7 @@ namespace DoAnLTWF_Code
         {
             InitializeComponent();
             user_current = u;
-            mnuUser.Text = "Hello, " + u.Fname + " " + u.Lname;
+            mnuUser.Text = "Hello, " + u.Fname;
         }
 
         private void frmSinhVien_Load(object sender, EventArgs e)
@@ -52,6 +52,11 @@ namespace DoAnLTWF_Code
         private void mnuLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void chỉnhSửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InfoUser iu = new InfoUser(user_current);
+            iu.ShowDialog();
         }
     }
 }

@@ -142,5 +142,19 @@ namespace DoAnLTWF_Code.DAO
 
             return old;
         }
+
+        public int soLuongSachConLai(string idSach)
+        {
+            string query = $"SELECT * FROM Sach WHERE idSach = '{idSach}'";
+            DataTable data = DataProvider.Instance.ExcuteQuery(query);
+
+            int sl = 0;
+            foreach(DataRow row in data.Rows)
+            {
+                sl = int.Parse(row["soLuong"].ToString());
+            }
+
+            return sl;
+        }
     }
 }

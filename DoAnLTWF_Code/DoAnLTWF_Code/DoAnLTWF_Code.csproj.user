@@ -10,10 +10,16 @@
     <Compile Update="Admin.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ChiTietMuonTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ChiTietSach.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ChonSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ChonSLTra.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ChooseSL.cs">
@@ -23,6 +29,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ExportDST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="InfoUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ListBookUC.cs">
@@ -41,6 +53,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ts.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="YeuCauThemSach.cs">
