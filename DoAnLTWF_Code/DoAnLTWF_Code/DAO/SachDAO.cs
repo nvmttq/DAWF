@@ -39,6 +39,21 @@ namespace DoAnLTWF_Code.DAO
             return listSach;
         }
 
+        public List<Sach> listSachUC(string condition, string keyword)
+        {
+            string query = $"EXEC USP_getListBookUC @condition = N'{condition}', @keyword = N'{keyword}'";
+            DataTable data = DataProvider.Instance.ExcuteQuery(query);
+
+            List<Sach> list = new List<Sach>();
+            foreach(DataRow row in data.Rows)
+            {
+                Sach s = new Sach(row);
+                list.Add(s);
+            }
+
+            return list;
+        }
+
         public Sach getSachWithId(string id)
         {
             Sach sach = null;
@@ -156,5 +171,15 @@ namespace DoAnLTWF_Code.DAO
 
             return sl;
         }
+
+        public void ThemSach(Sach s)
+        {
+            
+            string query = $"INSERT INTO Sach (idSach, tenSach, tenTacGia, nhaXuatBan, namXuatBan, soTrang, soLuong) VALUES(N'{s.IdSach}', N'{s.TenSach}', N'{s.TenTacGia}', N'{s.NhaXuatBan}', N'{s.NamXuatBan}', N'{s.SoTrang}', N'{s.SoLuong}')";
+
+            int res = DataProvider.Instance.ExcuteNonQuery(query);
+        }
+
+       
     }
 }

@@ -14,7 +14,7 @@ namespace DoAnLTWF_Code
 {
     public partial class frmts : Form
     {
-        public string link = @"Data Source=DESKTOP-5TIPTVB;Initial Catalog=QuanLyThuVien;Integrated Security=True";
+        public string link = _variable.link_connection;
         private User user_current = null;
         public frmts(User u)
         {
@@ -47,11 +47,39 @@ namespace DoAnLTWF_Code
                 if (SachMuonCuaUser.Count > 0)
                 {
                     DanhSachMuon.DataSource = SachMuonCuaUser;
-                    DanhSachMuon.Columns["idCTM"].Visible = false;
-                    DanhSachMuon.Columns["idMuon"].Visible = false;
+                    
                 }
                 else DanhSachMuon.DataSource = null;
-            } 
+            }
+            else
+            {
+                foreach (DataGridViewRow row in DanhSachMuon.Rows)
+                {
+                    ChiTietSachMuon ctms = new ChiTietSachMuon(row);
+                    pending_SachMuonCuaUser.Add(ctms);
+                }
+
+                SachMuonCuaUser = ListMuonDAO.Instance.SachMuonCuaUser(tbIdThe.Text);
+
+
+                if (SachMuonCuaUser.Count > 0)
+                {
+                    foreach (ChiTietSachMuon ctms in pending_SachMuonCuaUser)
+                    {
+                        SachMuonCuaUser.Add(ctms);
+                    }
+
+                    DanhSachMuon.DataSource = SachMuonCuaUser;
+                    
+                }
+                else DanhSachMuon.DataSource = null;
+
+            }
+
+            foreach(DataGridViewRow row in DanhSachMuon.Rows)
+            {
+               
+            }
 
             Account acc = AccountDAO.Instance.getAccountWithIdThe(tbIdThe.Text);
             if (acc == null)
@@ -85,8 +113,7 @@ namespace DoAnLTWF_Code
                 SachMuonCuaUser = cs.muonsach;
                 DanhSachMuon.DataSource = null;
                 DanhSachMuon.DataSource = SachMuonCuaUser;
-                DanhSachMuon.Columns["idCTM"].Visible = false;
-                DanhSachMuon.Columns["idMuon"].Visible = false;
+               
                 DanhSachMuon.Refresh();
                 check_choose_book = true;
             }
@@ -97,6 +124,8 @@ namespace DoAnLTWF_Code
             tbSoluong.Enabled = true;
             btnChonSach.Enabled = false;
             btnSave.Enabled = false;
+            btnTraSach.Enabled = false;
+            btnGiaHan.Enabled = false;
            // btnReset.Enabled = false;
            // btnPrint.Enabled = false;
         }
@@ -117,11 +146,14 @@ namespace DoAnLTWF_Code
                     throw new Exception("Độc giả không được mượn quá 3 cuốn sách");
                 }
 
-                
+                bool exists_new_book = false;
                 foreach (ChiTietSachMuon sm in SachMuonCuaUser)
                 {
-                    if (SachDAO.Instance.soLuongSachConLai(sm.idSach) < sm.soLuong) throw new Exception($"Số lượng sách còn lại của {tbTensach.Text} không đủ");
+                    if (sm.idCTM == null) exists_new_book = true;
+                    if (sm.idCTM == "" && SachDAO.Instance.soLuongSachConLai(sm.idSach) < sm.soLuong) throw new Exception($"Số lượng sách còn lại của {tbTensach.Text} không đủ");
                 }
+
+                if (!exists_new_book) throw new Exception("Chưa sách nào được thêm ! Vui lòng kiểm tra lại !");
 
                 saveDanhsachmuon();
                 Ctmuonsach();
@@ -129,8 +161,7 @@ namespace DoAnLTWF_Code
                 SachMuonCuaUser = ListMuonDAO.Instance.SachMuonCuaUser(tbIdThe.Text);
                 DanhSachMuon.DataSource = null;
                 DanhSachMuon.DataSource = SachMuonCuaUser;
-                DanhSachMuon.Columns["idCTM"].Visible = false;
-                DanhSachMuon.Columns["idMuon"].Visible = false;
+                
 
                 DanhSachMuon.Refresh();
                 save_ok = true;
@@ -149,6 +180,7 @@ namespace DoAnLTWF_Code
                 int soLuong = 0;
                 foreach(ChiTietSachMuon ctms in SachMuonCuaUser)
                 {
+                    if (ctms.idCTM != null) continue;
                     soLuong += ctms.soLuong;
                 }
                 ListMuonDAO.Instance.addDanhSachMuon(tbIdThe.Text, soLuong);
@@ -190,11 +222,14 @@ namespace DoAnLTWF_Code
             {
                 foreach (ChiTietSachMuon tmp in SachMuonCuaUser)
                 {
+                    if (tmp.idCTM != null) continue;
+
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandType = CommandType.Text;
                     string muon = dtpNgaymuon.Value.ToString("yyyy-MM-dd HH:mm:ss");
                     DateTime dt = DateTime.Now;
                     dt = dt.AddDays(7);
+                    MessageBox.Show(idmuon.ToString());
                     cmd.CommandText = $"INSERT INTO ChiTietMuonSach (idMuonSach,idSach,soLuong, ngayHenTra, tinhTrang) VALUES('{idmuon}', '{tmp.idSach}', '{tmp.soLuong}', '{dt}', '0')";
                     cmd.Connection = sql;
                     try
@@ -227,8 +262,7 @@ namespace DoAnLTWF_Code
 
             DanhSachMuon.DataSource = null;
             DanhSachMuon.DataSource = SachMuonCuaUser;
-            DanhSachMuon.Columns["idCTM"].Visible = false;
-            DanhSachMuon.Columns["idMuon"].Visible = false;
+            
         }
 
         private void btnSaveEdit_Click(object sender, EventArgs e)
@@ -240,15 +274,31 @@ namespace DoAnLTWF_Code
             {
                 if (txtMaSach.Text == "") throw new Exception("Vui lòng chọn sách cần chỉnh sửa !!");
 
-                ChiTietSachMuon sua = SachMuonCuaUser.FirstOrDefault(s => s.idCTM == txtMaMuon.Text);
-                sua.soLuong = Convert.ToInt32(tbSoluong.Text);
+                //ChiTietSachMuon sua = SachMuonCuaUser.FirstOrDefault(s => s.idCTM == txtMaMuon.Text);
+                //sua.soLuong = Convert.ToInt32(tbSoluong.Text);
 
+                DataGridViewRow slRow = DanhSachMuon.SelectedRows[0];
+                MessageBox.Show("Hello" + slRow.Cells["tenSach"].Value.ToString());
+
+                for(int i = 0; i < SachMuonCuaUser.Count; i++)
+                {
+                    if(i == slRow.Index)
+                    {
+                        SachMuonCuaUser[i].soLuong = Convert.ToInt32(tbSoluong.Text);
+                        break;
+                    }
+                }
                 DanhSachMuon.DataSource = null;
-                DanhSachMuon.DataSource = muonsach;
+                DanhSachMuon.DataSource = SachMuonCuaUser;
+               
+
+
                 // EDITHERE
                 tbSoluong.Enabled = false;
                 btnChonSach.Enabled = true;
                 btnSave.Enabled = true;
+                btnTraSach.Enabled = true;
+                btnGiaHan.Enabled = true;
               //  btnReset.Enabled = true;
               //  btnPrint.Enabled = true;
             }
@@ -263,6 +313,8 @@ namespace DoAnLTWF_Code
             tbSoluong.Enabled = false;
             btnChonSach.Enabled = true;
             btnSave.Enabled = true;
+            btnTraSach.Enabled = true;
+            btnGiaHan.Enabled = true;
             // btnReset.Enabled = true;
             // btnPrint.Enabled = true;
             btnHuy.Enabled = true;
@@ -287,8 +339,11 @@ namespace DoAnLTWF_Code
                 txtMaSach.Text = s.IdSach;
 
                 txtMaMuon.Text = (slRow.Cells["idCTM"].Value == null ? "" : slRow.Cells["idCTM"].Value.ToString());
-                dtpNgaymuon.Value = DateTime.Parse(slRow.Cells["ngayMuon"].Value.ToString());
-                dtpHantra.Value = DateTime.Parse(slRow.Cells["ngayHenTra"].Value.ToString());
+                if (txtMaMuon.Text == "") txtMaMuon.Text = "Sách chưa được lưu!";
+                //dtpNgaymuon.Value = DateTime.Parse(slRow.Cells["ngayMuon"].Value.ToString());
+                //dtpHantra.Value = DateTime.Parse(slRow.Cells["ngayHenTra"].Value.ToString());
+                if (DateTime.Parse(slRow.Cells["ngayMuon"].Value.ToString()).Year != 1) tbNgayMuon.Text = DateTime.Parse(slRow.Cells["ngayMuon"].Value.ToString()).ToString("dd-MM-yy hh:mm:ss");
+                if (DateTime.Parse(slRow.Cells["ngayHenTra"].Value.ToString()).Year != 1) tbNgayTra.Text = DateTime.Parse(slRow.Cells["ngayHenTra"].Value.ToString()).ToString("dd-MM-yy hh:mm:ss");
             }
         }
 
@@ -311,7 +366,11 @@ namespace DoAnLTWF_Code
                 if(csl.ShowDialog() == DialogResult.OK)
                 {
                     soLuongTra = csl.SoLuong;
-
+                    if(soLuongTra == 0)
+                    {
+                        MessageBox.Show("Số lượng trả phải ít nhất 1");
+                        goto back_choose_SLTra;
+                    }
                     int soLuongDaTra = 0;
                     foreach (ChiTietSachMuon sm in SachMuonCuaUser)
                     {
@@ -324,6 +383,7 @@ namespace DoAnLTWF_Code
                         goto back_choose_SLTra;
                     }
                 }
+
 
                 DialogResult res = MessageBox.Show($"Xác nhận trả {soLuongTra} cuốn sách {tbTensach.Text}", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -342,8 +402,8 @@ namespace DoAnLTWF_Code
 
                     DanhSachMuon.DataSource = null;
                     DanhSachMuon.DataSource = SachMuonCuaUser;
-                    DanhSachMuon.Columns["idCTM"].Visible = false;
-                    DanhSachMuon.Columns["idMuon"].Visible = false;
+                   
+
                     txtMaSach.Text = "";
                     tbSoluong.Text = "";
                     txtMaMuon.Text = "";
@@ -358,14 +418,20 @@ namespace DoAnLTWF_Code
         }
 
 
-        private void UdGiahan()
-        {
-            ListMuonDAO.Instance.GiaHanMuon(txtMaMuon.Text);
-        }
+      
 
         private void btnGiaHan_Click(object sender, EventArgs e)
         {
-            UdGiahan();
+            try
+            {
+                if (tbIdThe.Text == "") throw new Exception("Vui lòng chọn người dùng");
+                if (txtMaSach.Text == "") throw new Exception("Vui lòng chọn sách cần trả !!!");
+                ListMuonDAO.Instance.GiaHanMuon(txtMaMuon.Text);
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
 
@@ -378,7 +444,13 @@ namespace DoAnLTWF_Code
         private void mnuInfo_Click(object sender, EventArgs e)
         {
             InfoUser iu = new InfoUser(user_current);
-            iu.Show();
+            
+            if(iu.ShowDialog() == DialogResult.OK)
+            {
+                user_current = iu.info;
+                mnuUser.Text = "Hello, " + user_current.Fname + " " + user_current.Lname + "  !!!";
+
+            }
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)
@@ -388,16 +460,37 @@ namespace DoAnLTWF_Code
             if (res == DialogResult.Yes) this.Close();
         }
 
-        private void frmts_Load(object sender, EventArgs e)
-        {
 
-        }
+
+
         #endregion
-
-
 
         #region DSMUON
 
         #endregion
+
+        private void DanhSachMuon_DataSourceChanged(object sender, EventArgs e)
+        {
+         
+            if(DanhSachMuon.DataSource != null)
+            {
+                DanhSachMuon.Columns["idCTM"].Visible = false;
+                DanhSachMuon.Columns["idMuon"].Visible = false;
+                DanhSachMuon.Columns["ngayMuon"].Visible = false;
+                DanhSachMuon.Columns["ngayHenTra"].Visible = false;
+                for (int i = 0; i < SachMuonCuaUser.Count; i++)
+                {
+                    if (SachMuonCuaUser[i].idCTM != null) DanhSachMuon.Rows[i].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#00FF7F");
+                }
+            }
+
+            
+        }
+
+        private void frmts_Load(object sender, EventArgs e)
+        {
+            pnCLPending.BackColor = ColorTranslator.FromHtml("#00FF7F");
+            pnCLNew.BackColor = Color.White;
+        }
     }
 }

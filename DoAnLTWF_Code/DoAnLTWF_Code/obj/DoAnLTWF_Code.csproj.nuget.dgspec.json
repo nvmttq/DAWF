@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj": {}
+    "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF V2\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj": {
+    "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF V2\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj",
+        "projectUniqueName": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF V2\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj",
         "projectName": "DoAnLTWF_Code",
-        "projectPath": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj",
+        "projectPath": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF V2\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj",
         "packagesPath": "C:\\Users\\NVM\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF\\DoAnLTWF_Code\\DoAnLTWF_Code\\obj\\",
+        "outputPath": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF V2\\DoAnLTWF_Code\\DoAnLTWF_Code\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NVM\\AppData\\Roaming\\NuGet\\NuGet.Config",

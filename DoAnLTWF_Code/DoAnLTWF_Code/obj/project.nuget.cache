@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TH5pCneYbr4S3ZAipZtRhdLwqqA7nTQ7UAl9UmVBmWakD+wlqgGywa2RZ3liiAZfrIWseRdjxlvKrstfGp21BQ==",
+  "dgSpecHash": "f0HTWJURM8SNt3ScuFsaoQ7zi45dnTK3fUluAQV/9grfvCBJvGeoSmMMPSVOVX+nn05tBaF/4/OndBy++QMrdA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj",
+  "projectFilePath": "C:\\Users\\NVM\\OneDrive - DHTDM\\Desktop\\DoAnLTWF V2\\DoAnLTWF_Code\\DoAnLTWF_Code\\DoAnLTWF_Code.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NVM\\.nuget\\packages\\epplus.core\\1.5.4\\epplus.core.1.5.4.nupkg.sha512",
     "C:\\Users\\NVM\\.nuget\\packages\\microsoft.data.sqlite\\7.0.7\\microsoft.data.sqlite.7.0.7.nupkg.sha512",

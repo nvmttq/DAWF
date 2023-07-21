@@ -9,7 +9,7 @@ namespace DoAnLTWF_Code
     
     public class DataProvider
     {
-        private string ConStr = @"Data Source=DESKTOP-5TIPTVB;Initial Catalog=QuanLyThuVien;Integrated Security=True";
+        private string ConStr = _variable.link_connection;
         private SqlConnection Con;
         private SqlCommand Cmd;
         private DataTable Data;

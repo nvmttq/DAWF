@@ -11,6 +11,7 @@ namespace DoAnLTWF_Code.DTO
         public string idCTM { get; set; }
         public string idMuon { get; set; }
         public string idSach { get; set; }
+        public string tenSach { get; set; }
         public int soLuong { get; set; }
         public int daTra { get; set; }
         public DateTime ngayMuon { get; set; }
@@ -20,20 +21,23 @@ namespace DoAnLTWF_Code.DTO
         public ChiTietSachMuon() { }
 
 
-        public ChiTietSachMuon(string idSach, int soLuong)
+        public ChiTietSachMuon(string idSach, int soLuong, string tenSach)
         {
             this.idSach = idSach;
             this.soLuong = soLuong;
-            this.ngayMuon = DateTime.Now;
-            this.ngayHenTra = this.ngayMuon;
-            this.ngayMuon.AddDays(7);
+            //this.ngayMuon = DateTime.Now;
+            //this.ngayHenTra = this.ngayMuon;
+            //this.ngayHenTra.AddDays(7);
+            this.daTra = 0;
             this.soLanGiaHan = 0;
+            this.tenSach = tenSach;
         }
         public ChiTietSachMuon(DataRow row)
         {
             this.idCTM = row["idCTM"].ToString();
             this.idMuon = row["idMuonSach"].ToString();
             this.idSach = row["idSach"].ToString();
+            this.tenSach = row["tenSach"].ToString();
             this.soLuong = int.Parse(row["soLuong"].ToString());
             this.daTra = int.Parse(row["daTra"].ToString());
             this.soLanGiaHan = int.Parse(row["soLanGiaHan"].ToString());
@@ -44,14 +48,15 @@ namespace DoAnLTWF_Code.DTO
         public ChiTietSachMuon(DataGridViewRow row)
         {
             this.idMuon = rowIsNull(row, "idMuon");
+            this.idCTM = rowIsNull(row, "idCTM");
             this.idSach = row.Cells["idSach"].Value.ToString();
             this.soLuong = int.Parse(row.Cells["soLuong"].Value.ToString());
             this.daTra = int.Parse(row.Cells["daTra"].Value.ToString());
             this.soLanGiaHan = int.Parse(row.Cells["soLanGiaHan"].Value.ToString());
             this.ngayMuon = DateTime.Parse(row.Cells["ngayMuon"].Value.ToString());
             this.ngayHenTra = DateTime.Parse(row.Cells["ngayHenTra"].Value.ToString());
+        //    this.tenSach = rowIsNull(row, "TenSach")
           
-            this.idCTM = row.Cells["idCTM"].Value.ToString();
         }
 
 

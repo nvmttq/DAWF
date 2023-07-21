@@ -22,22 +22,28 @@ namespace DoAnLTWF_Code
 
         private void frmSinhVien_Load(object sender, EventArgs e)
         {
-            
-            List<Sach> listSach= new List<Sach>();
-            listSach = SachDAO.Instance.listSach();
-            ListBookUC[] lists = new ListBookUC[listSach.Count];
-            for (int i = 0; i < listSach.Count; i++)
+
+            LoadListBookUC();
+        }
+
+        private void LoadListBookUC(string condition = null, string keyword = null)
+        {
+            flpnSach.Controls.Clear();
+            List<Sach> listSachShow = new List<Sach>();
+            listSachShow = SachDAO.Instance.listSachUC(condition, keyword);
+            ListBookUC[] lists = new ListBookUC[listSachShow.Count];
+            for (int i = 0; i < listSachShow.Count; i++)
             {
 
                 // add data here
-                List<TheLoai> listTlSach = TheLoaiDAO.Instance.getTheLoaiCuaSach(listSach[i].IdSach);
+                List<TheLoai> listTlSach = TheLoaiDAO.Instance.getTheLoaiCuaSach(listSachShow[i].IdSach);
                 string tlSach = TheLoaiDAO.Instance.ListTheLoaiToString(listTlSach);
 
                 lists[i] = new ListBookUC();
-                lists[i].Tieude = listSach[i].TenSach.ToString();
+                lists[i].Tieude = listSachShow[i].TenSach.ToString();
                 lists[i].TheLoai = tlSach;
-                lists[i].ConLai = listSach[i].SoLuong.ToString();
-                lists[i].IdSach = listSach[i].IdSach;
+                lists[i].ConLai = listSachShow[i].SoLuong.ToString();
+                lists[i].IdSach = listSachShow[i].IdSach;
                 lists[i].Margin = new Padding(30, 5, 20, 15);
 
                 flpnSach.Controls.Add(lists[i]);
@@ -56,7 +62,23 @@ namespace DoAnLTWF_Code
         private void chỉnhSửaThôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InfoUser iu = new InfoUser(user_current);
-            iu.ShowDialog();
+            if (iu.ShowDialog() == DialogResult.OK)
+            {
+                user_current = iu.info;
+                mnuUser.Text = "Hello, " + user_current.Fname + " " + user_current.Lname + "  !!!";
+
+            }
+        }
+
+        private void btnTKTC_Click(object sender, EventArgs e)
+        {
+            if (txtSearchTC.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập từ khóa trước khi tìm !!!");
+                return;
+            }
+
+            LoadListBookUC(cbTKSTC.SelectedItem.ToString(), txtSearchTC.Text);
         }
     }
 }

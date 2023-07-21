@@ -92,5 +92,15 @@ namespace DoAnLTWF_Code
                 btnDangNhap.PerformClick();
             }
         }
+
+        private void frmDangNhap_Load(object sender, EventArgs e)
+        {
+            loadColor();
+        }
+
+        private void loadColor()
+        {
+          //  btnDangNhap.BackColor = ColorTranslator.FromHtml("#186db6");
+        }
     }
 }

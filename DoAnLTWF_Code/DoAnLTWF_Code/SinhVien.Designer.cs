@@ -35,9 +35,6 @@ namespace DoAnLTWF_Code
             this.flpnSach = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnTimKiem = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pnHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -46,6 +43,9 @@ namespace DoAnLTWF_Code
             this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbTKSTC = new System.Windows.Forms.ComboBox();
+            this.btnTKTC = new System.Windows.Forms.Button();
+            this.txtSearchTC = new System.Windows.Forms.TextBox();
             this.pnMain.SuspendLayout();
             this.pnContent.SuspendLayout();
             this.pnListSach.SuspendLayout();
@@ -107,42 +107,13 @@ namespace DoAnLTWF_Code
             // 
             // pnTimKiem
             // 
-            this.pnTimKiem.Controls.Add(this.comboBox1);
-            this.pnTimKiem.Controls.Add(this.label2);
-            this.pnTimKiem.Controls.Add(this.textBox1);
+            this.pnTimKiem.Controls.Add(this.txtSearchTC);
+            this.pnTimKiem.Controls.Add(this.btnTKTC);
+            this.pnTimKiem.Controls.Add(this.cbTKSTC);
             this.pnTimKiem.Location = new System.Drawing.Point(103, 6);
             this.pnTimKiem.Name = "pnTimKiem";
             this.pnTimKiem.Size = new System.Drawing.Size(595, 40);
             this.pnTimKiem.TabIndex = 3;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Tác giả",
-            "Nhà xuất bản",
-            "Thể loại"});
-            this.comboBox1.Location = new System.Drawing.Point(464, 9);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(93, 23);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(38, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Tìm kiếm";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(100, 9);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(347, 23);
-            this.textBox1.TabIndex = 1;
             // 
             // pnHeader
             // 
@@ -187,14 +158,14 @@ namespace DoAnLTWF_Code
             // chỉnhSửaThôngTinToolStripMenuItem
             // 
             this.chỉnhSửaThôngTinToolStripMenuItem.Name = "chỉnhSửaThôngTinToolStripMenuItem";
-            this.chỉnhSửaThôngTinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.chỉnhSửaThôngTinToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.chỉnhSửaThôngTinToolStripMenuItem.Text = "Chỉnh sửa thông tin";
             this.chỉnhSửaThôngTinToolStripMenuItem.Click += new System.EventHandler(this.chỉnhSửaThôngTinToolStripMenuItem_Click);
             // 
             // mnuLogout
             // 
             this.mnuLogout.Name = "mnuLogout";
-            this.mnuLogout.Size = new System.Drawing.Size(180, 22);
+            this.mnuLogout.Size = new System.Drawing.Size(179, 22);
             this.mnuLogout.Text = "Đăng xuất";
             this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
             // 
@@ -217,6 +188,37 @@ namespace DoAnLTWF_Code
             this.label1.TabIndex = 0;
             this.label1.Text = "TDM_V1.0";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbTKSTC
+            // 
+            this.cbTKSTC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTKSTC.FormattingEnabled = true;
+            this.cbTKSTC.Items.AddRange(new object[] {
+            "Tên Sách",
+            "Tác Giả",
+            "Nhà Xuất Bản",
+            "Thể Loại"});
+            this.cbTKSTC.Location = new System.Drawing.Point(3, 9);
+            this.cbTKSTC.Name = "cbTKSTC";
+            this.cbTKSTC.Size = new System.Drawing.Size(93, 23);
+            this.cbTKSTC.TabIndex = 3;
+            // 
+            // btnTKTC
+            // 
+            this.btnTKTC.Location = new System.Drawing.Point(467, 9);
+            this.btnTKTC.Name = "btnTKTC";
+            this.btnTKTC.Size = new System.Drawing.Size(75, 23);
+            this.btnTKTC.TabIndex = 4;
+            this.btnTKTC.Text = "Tìm kiếm";
+            this.btnTKTC.UseVisualStyleBackColor = true;
+            this.btnTKTC.Click += new System.EventHandler(this.btnTKTC_Click);
+            // 
+            // txtSearchTC
+            // 
+            this.txtSearchTC.Location = new System.Drawing.Point(102, 9);
+            this.txtSearchTC.Name = "txtSearchTC";
+            this.txtSearchTC.Size = new System.Drawing.Size(347, 23);
+            this.txtSearchTC.TabIndex = 5;
             // 
             // frmSinhVien
             // 
@@ -259,10 +261,10 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Panel pnContent;
         private System.Windows.Forms.FlowLayoutPanel flpnSach;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel pnListSach;
         private System.Windows.Forms.Panel pnTimKiem;
+        private System.Windows.Forms.ComboBox cbTKSTC;
+        private System.Windows.Forms.Button btnTKTC;
+        private System.Windows.Forms.TextBox txtSearchTC;
     }
 }

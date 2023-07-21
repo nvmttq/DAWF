@@ -235,6 +235,7 @@ namespace DoAnLTWF_Code
             this.btnLuu.TabIndex = 26;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnHuy
             // 
@@ -324,7 +325,7 @@ namespace DoAnLTWF_Code
             this.MaximizeBox = false;
             this.Name = "InfoUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InfoUser";
+            this.Text = "Thôn tin cá nhân";
             this.Load += new System.EventHandler(this.InfoUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

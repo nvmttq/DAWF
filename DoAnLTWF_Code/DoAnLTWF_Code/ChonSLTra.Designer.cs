@@ -50,7 +50,7 @@ namespace DoAnLTWF_Code
             this.txtSL.Name = "txtSL";
             this.txtSL.Size = new System.Drawing.Size(100, 23);
             this.txtSL.TabIndex = 1;
-            this.txtSL.Text = "0";
+            this.txtSL.Text = "1";
             // 
             // btnXN
             // 

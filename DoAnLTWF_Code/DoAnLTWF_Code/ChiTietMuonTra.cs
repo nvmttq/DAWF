@@ -14,7 +14,7 @@ namespace DoAnLTWF_Code
     {
         int id;
         int check;
-        public string link = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=QuanLyThuVien;Integrated Security=True";
+        public string link = _variable.link_connection;
         public ChiTietMuonTra(int i, int c)
         {
             InitializeComponent();

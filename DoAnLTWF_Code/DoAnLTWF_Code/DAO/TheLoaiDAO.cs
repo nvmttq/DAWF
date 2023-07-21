@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DoAnLTWF_Code.DAO
 {
@@ -89,6 +90,22 @@ namespace DoAnLTWF_Code.DAO
             }
 
             return lists;
+        }
+
+        public void ThemTheLoai(string theloai, string idSach)
+        {
+            string[] ds = theloai.Split(",");
+            foreach (string s in ds)
+            {
+                try
+                {
+                    string query = $"INSERT INTO ChiTietTheLoai VALUES (N'{idSach}', N'{s}')";
+                    int res = DataProvider.Instance.ExcuteNonQuery(query);
+                } catch(Exception ex)
+                {
+                    MessageBox.Show("Lỗi ! Vui lòng kiểm tra lại thể loại đã nhập");
+                }
+            }
         }
     }
 }

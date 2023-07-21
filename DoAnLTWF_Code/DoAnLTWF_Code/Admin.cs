@@ -36,6 +36,7 @@ namespace DoAnLTWF_Code
 
             cbTKS.SelectedIndex = 0;
             cbSearchUser.SelectedIndex = 0;
+            cbTKSTC.SelectedIndex = 0;
 
             foreach (Control ctr in pnInfoSach.Controls)
             {
@@ -51,25 +52,7 @@ namespace DoAnLTWF_Code
 
 
             // HOME 
-            List<Sach> listSachShow = new List<Sach>();
-            listSachShow = SachDAO.Instance.listSach();
-            ListBookUC[] lists = new ListBookUC[listSachShow.Count];
-            for (int i = 0; i < listSachShow.Count; i++)
-            {
-
-                // add data here
-                List<TheLoai> listTlSach = TheLoaiDAO.Instance.getTheLoaiCuaSach(listSachShow[i].IdSach);
-                string tlSach = TheLoaiDAO.Instance.ListTheLoaiToString(listTlSach);
-
-                lists[i] = new ListBookUC();
-                lists[i].Tieude = listSachShow[i].TenSach.ToString();
-                lists[i].TheLoai = tlSach;
-                lists[i].ConLai = listSachShow[i].SoLuong.ToString();
-                lists[i].IdSach = listSachShow[i].IdSach;
-                lists[i].Margin = new Padding(30, 5, 20, 15);
-
-                flpnSach.Controls.Add(lists[i]);
-            }
+            LoadListBookUC();
 
 
             // TABPAGE THONG KE
@@ -89,6 +72,29 @@ namespace DoAnLTWF_Code
             dtgvTKM.DataSource = ListMuonDAO.Instance.ThongKeSachMuon();
         }
 
+        private void LoadListBookUC(string condition = null, string keyword = null)
+        {
+            flpnSach.Controls.Clear();
+            List<Sach> listSachShow = new List<Sach>();
+            listSachShow = SachDAO.Instance.listSachUC(condition,keyword);
+            ListBookUC[] lists = new ListBookUC[listSachShow.Count];
+            for (int i = 0; i < listSachShow.Count; i++)
+            {
+
+                // add data here
+                List<TheLoai> listTlSach = TheLoaiDAO.Instance.getTheLoaiCuaSach(listSachShow[i].IdSach);
+                string tlSach = TheLoaiDAO.Instance.ListTheLoaiToString(listTlSach);
+
+                lists[i] = new ListBookUC();
+                lists[i].Tieude = listSachShow[i].TenSach.ToString();
+                lists[i].TheLoai = tlSach;
+                lists[i].ConLai = listSachShow[i].SoLuong.ToString();
+                lists[i].IdSach = listSachShow[i].IdSach;
+                lists[i].Margin = new Padding(30, 5, 20, 15);
+
+                flpnSach.Controls.Add(lists[i]);
+            }
+        }
         private void typeObject_Click(object sender, EventArgs e)
         {
             string text = "Độc giả";
@@ -163,11 +169,19 @@ namespace DoAnLTWF_Code
         }
         private void btnTKS_Click(object sender, EventArgs e)
         {
-            string text = txtTKS.Text;
-            string op = cbTKS.SelectedItem.ToString();
+            try
+            {
+                if (txtTKS.Text == "") throw new Exception("Vui lòng nhập dữ liệu trước khi tìm kiếm");
 
-            List<Sach> listSach = SachDAO.Instance.timKiemSach(text, op);
-            dtgvSach.DataSource = listSach;
+                string text = txtTKS.Text;
+                string op = cbTKS.SelectedItem.ToString();
+
+                List<Sach> listSach = SachDAO.Instance.timKiemSach(text, op);
+                dtgvSach.DataSource = listSach;
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnXoaSach_Click(object sender, EventArgs e)
@@ -377,6 +391,11 @@ namespace DoAnLTWF_Code
         }
         private void btnXoaUser_Click(object sender, EventArgs e)
         {
+            if(txtIdUser.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn thành viên cần thực hiện !!!");
+                return;
+            }
             string id = txtIdUser.Text;
 
 
@@ -406,12 +425,19 @@ namespace DoAnLTWF_Code
 
         private void btnSearchUser_Click(object sender, EventArgs e)
         {
-            string key = txtKeySearch.Text;
-            string op = cbSearchUser.SelectedItem.ToString();
+            try
+            {
+                if (txtKeySearch.Text == "") throw new Exception("Vui lòng nhập dữ liệu trước khi tìm kiếm !!!");
+                string key = txtKeySearch.Text;
+                string op = cbSearchUser.SelectedItem.ToString();
 
-            List<User> list = UserDAO.Instance.searchUserOp(key, op);
+                List<User> list = UserDAO.Instance.searchUserOp(key, op);
 
-            dtgvUser.DataSource = list;
+                dtgvUser.DataSource = list;
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void setButtonEndbel(string name, string op)
@@ -471,20 +497,7 @@ namespace DoAnLTWF_Code
         #endregion
 
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnContentThonTin_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
 
         private void mnuLogout_Click(object sender, EventArgs e)
         {
@@ -494,7 +507,12 @@ namespace DoAnLTWF_Code
         private void mnuInfo_Click(object sender, EventArgs e)
         {
             InfoUser iu = new InfoUser(user_current);
-            iu.ShowDialog();
+            if (iu.ShowDialog() == DialogResult.OK)
+            {
+                user_current = iu.info;
+                mnuUser.Text = "Hello, " + user_current.Fname + " " + user_current.Lname + "  !!!";
+
+            }
         }
 
         private void btnLoc_Click(object sender, EventArgs e)
@@ -549,7 +567,7 @@ namespace DoAnLTWF_Code
                     };
 
                     ws.Name = "Danh Sách Mượn";
-                    ws.Cells[1, 1].Value = "Thống kê danh sách mượn";
+                    ws.Cells[1, 1].Value = $"Thống kê danh sách mượn";
                     ws.Cells[1, 1, 1, header.Count].Merge = true;
                     ws.Cells[1, 1, 1, header.Count].Style.Font.Bold = true;
                     ws.Cells[1, 1, 1, header.Count].Style.Font.Size = 20;
@@ -587,7 +605,7 @@ namespace DoAnLTWF_Code
                         ws.Cells[row_index, col_index++].Value = sm.idSach;
                         ws.Cells[row_index, col_index++].Value = sm.soLuong;
                         ws.Cells[row_index, col_index++].Value = sm.ngayMuon.ToShortDateString();
-                    //    ws.Cells[row_index, col_index++].Value = sm.ngayHenTra.ToShortDateString();
+                        ws.Cells[row_index, col_index++].Value = sm.ngayHenTra.ToShortDateString();
                         ws.Cells[row_index, col_index++].Value = sm.soLanGiaHan;
 
                     }
@@ -824,6 +842,36 @@ namespace DoAnLTWF_Code
         private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            txtKeySearch.Text = "";
+        }
+
+        private void btnThemSach_Click(object sender, EventArgs e)
+        {
+            ThemSach ts = new ThemSach();
+            ts.Show();
+        }
+
+        private void btnTKTC_Click(object sender, EventArgs e)
+        {
+            if(txtSearchTC.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập từ khóa trước khi tìm !!!");
+                return;
+            }
+
+            LoadListBookUC(cbTKSTC.SelectedItem.ToString(), txtSearchTC.Text);
+        }
+
+        private void txtSearchTC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnTKTC.PerformClick();
+            }
         }
 
         private void btnChon_Click(object sender, EventArgs e)

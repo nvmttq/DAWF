@@ -15,7 +15,7 @@ namespace DoAnLTWF_Code
     {
         private int soLuong = 0;
         private int max_soLuong = 0;
-        private string ids, tentacgia, tens;
+        private string ids, tentacgia, tens = "";
         public List<ChiTietSachMuon> muonsach = new List<ChiTietSachMuon>();
         private int current_row_choose = -1;
         private string idThe = "";
@@ -81,12 +81,15 @@ namespace DoAnLTWF_Code
                     goto back_Exception;
                 }
                 max_soLuong += soLuong;
-                ChiTietSachMuon tmp = new ChiTietSachMuon(ids, soLuong);
+
+                ChiTietSachMuon tmp = new ChiTietSachMuon(ids, soLuong, tens);
                 muonsach.Add(tmp);
                 dtgvMuon.DataSource = null;
                 dtgvMuon.DataSource = muonsach;
                 dtgvMuon.Columns["idCTM"].Visible = false;
                 dtgvMuon.Columns["idMuon"].Visible = false;
+                dtgvMuon.Columns["ngayMuon"].Visible = false;
+                dtgvMuon.Columns["ngayHenTra"].Visible = false;
             }
 
           
@@ -121,7 +124,7 @@ namespace DoAnLTWF_Code
                     MessageBox.Show("Xóa thành công");
                 } catch (Exception ex)
                 {
-
+                    MessageBox.Show("Xóa thông thành công !!!");
                 }
             }
         }
@@ -139,6 +142,7 @@ namespace DoAnLTWF_Code
 
             DataGridViewRow slRow = dtgvSach.Rows[e.RowIndex];
             ids = isNullRow(slRow, "idSach");
+            tens = isNullRow(slRow, "TenSach");
             if (e.Button == MouseButtons.Right)
             {
                 dtgvSach.ClearSelection();

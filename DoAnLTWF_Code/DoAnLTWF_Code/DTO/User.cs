@@ -58,39 +58,7 @@ namespace DoAnLTWF_Code.DTO
             return row.IsNull(columnName) ? string.Empty : row[columnName].ToString();
         }
 
-        //public User(DataRow row)
-        //{
-        //    this.IdThanhVien = row.IsNull("idThanhVien") ? string.Empty : row["idThanhVien"].ToString();
-        //    this.Fname = row.IsNull("Fname") ? string.Empty : row["Fname"].ToString();
-        //    this.Lname = row.IsNull("Lname") ? string.Empty : row["Lname"].ToString();
-
-        //    if (row.IsNull("Birthday"))
-        //    {
-        //        this.Birthday = DateTime.MinValue; // or any other default value you prefer
-        //    }
-        //    else
-        //    {
-        //        this.Birthday = Convert.ToDateTime(row["Birthday"]);
-        //    }
-
-        //    this.Email = getTextIsNull(row["Email"].ToString());
-        //    this.Phone = row.IsNull("Phone") ? string.Empty : row["Phone"].ToString();
-        //    this.Bank = row.IsNull("Bank") ? string.Empty : row["Bank"].ToString();
-        //    this.Mode = row.IsNull("Mode") ? string.Empty : row["Mode"].ToString();
-        //    this.ModeRole = row.IsNull("Role") ? string.Empty : row["Role"].ToString();
-
-        //    this.IdThe = row["idThe"].ToString();
-        //    this.Password = row["Password"].ToString();
-
-        //    this.NgayDangKy = Convert.ToDateTime(row["NgayDangKy"]);
-        //    this.NgayHetHan = Convert.ToDateTime(row["NgayHetHan"]);
-
-        //}
-
-        //public string getTextIsNull(string text)
-        //{
-        //    return text == null ? "" : text;
-        //}
+   
         #region get,set
         public string IdThanhVien { get => _idThanhVien; set => _idThanhVien = value; }
         public string Fname { get => _fname; set => _fname = value; }

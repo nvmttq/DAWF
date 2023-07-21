@@ -62,7 +62,7 @@ namespace DoAnLTWF_Code.DAO
             int tot = 0;
             foreach(ChiTietSachMuon sm in list)
             {
-                tot += int.Parse(sm.soLuong.ToString());
+                if(sm.idCTM != null) tot += int.Parse(sm.soLuong.ToString());
             }
 
             return tot;
@@ -115,6 +115,7 @@ namespace DoAnLTWF_Code.DAO
 
             return ctsm;
         }
+
         public void GiaHanMuon(string idCTM)
         {
             string query = $"UPDATE ChiTietMuonSach SET ngayHenTra = DATEADD(day, 7, ngayHenTra) WHERE idCTM = '{idCTM}'";

@@ -124,5 +124,12 @@ namespace DoAnLTWF_Code.DAO
 
             return lists;
         }
+
+
+        public void EditInfo(User u)
+        {
+            string query = $"UPDATE ThanhVien SET Fname = N'{u.Fname}', Lname = N'{u.Lname}', Phone = N'{u.Phone}', Email = N'{u.Email}', Bank = N'{u.Bank}', Birthday = N'{u.Birthday}' WHERE idThanhVien = N'{u.IdThanhVien}'";
+            int res = DataProvider.Instance.ExcuteNonQuery(query);
+        }
     }
 }

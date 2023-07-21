@@ -43,9 +43,9 @@ namespace DoAnLTWF_Code
             this.flpnSach = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnTimKiem = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnTKTC = new System.Windows.Forms.Button();
+            this.cbTKSTC = new System.Windows.Forms.ComboBox();
+            this.txtSearchTC = new System.Windows.Forms.TextBox();
             this.tpQLDM = new System.Windows.Forms.TabPage();
             this.pnQuanLySach = new System.Windows.Forms.Panel();
             this.pnSachVaTheLoai = new System.Windows.Forms.Panel();
@@ -189,7 +189,6 @@ namespace DoAnLTWF_Code
             this.label26 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.cbTKNgay = new System.Windows.Forms.ComboBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.TLYC = new System.Windows.Forms.TabPage();
             this.panel34 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -361,13 +360,14 @@ namespace DoAnLTWF_Code
             this.mnuUser.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuInfo,
             this.mnuLogout});
-            this.mnuUser.Image = global::DoAnLTWF_Code.Properties.Resources.User_icon_2_svg;
+            this.mnuUser.Image = global::DoAnLTWF_Code.Properties.Resources.user;
             this.mnuUser.Name = "mnuUser";
             this.mnuUser.Size = new System.Drawing.Size(71, 24);
             this.mnuUser.Text = "User";
             // 
             // mnuInfo
             // 
+            this.mnuInfo.Image = global::DoAnLTWF_Code.Properties.Resources.user_info;
             this.mnuInfo.Name = "mnuInfo";
             this.mnuInfo.Size = new System.Drawing.Size(184, 26);
             this.mnuInfo.Text = "Xem thông tin";
@@ -375,6 +375,7 @@ namespace DoAnLTWF_Code
             // 
             // mnuLogout
             // 
+            this.mnuLogout.Image = global::DoAnLTWF_Code.Properties.Resources.check_out;
             this.mnuLogout.Name = "mnuLogout";
             this.mnuLogout.Size = new System.Drawing.Size(184, 26);
             this.mnuLogout.Text = "Đăng xuất";
@@ -436,42 +437,45 @@ namespace DoAnLTWF_Code
             // 
             // pnTimKiem
             // 
-            this.pnTimKiem.Controls.Add(this.comboBox1);
-            this.pnTimKiem.Controls.Add(this.label16);
-            this.pnTimKiem.Controls.Add(this.textBox1);
+            this.pnTimKiem.Controls.Add(this.btnTKTC);
+            this.pnTimKiem.Controls.Add(this.cbTKSTC);
+            this.pnTimKiem.Controls.Add(this.txtSearchTC);
             this.pnTimKiem.Location = new System.Drawing.Point(103, 6);
             this.pnTimKiem.Name = "pnTimKiem";
             this.pnTimKiem.Size = new System.Drawing.Size(595, 40);
             this.pnTimKiem.TabIndex = 3;
             // 
-            // comboBox1
+            // btnTKTC
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Tác giả",
-            "Nhà xuất bản",
-            "Thể loại"});
-            this.comboBox1.Location = new System.Drawing.Point(464, 9);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(93, 23);
-            this.comboBox1.TabIndex = 2;
+            this.btnTKTC.Location = new System.Drawing.Point(464, 9);
+            this.btnTKTC.Name = "btnTKTC";
+            this.btnTKTC.Size = new System.Drawing.Size(75, 23);
+            this.btnTKTC.TabIndex = 3;
+            this.btnTKTC.Text = "Tìm kiếm";
+            this.btnTKTC.UseVisualStyleBackColor = true;
+            this.btnTKTC.Click += new System.EventHandler(this.btnTKTC_Click);
             // 
-            // label16
+            // cbTKSTC
             // 
-            this.label16.Location = new System.Drawing.Point(38, 13);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(56, 15);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Tìm kiếm";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbTKSTC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTKSTC.FormattingEnabled = true;
+            this.cbTKSTC.Items.AddRange(new object[] {
+            "Tên Sách",
+            "Tác Giả",
+            "Nhà Xuất Bản",
+            "Thể Loại"});
+            this.cbTKSTC.Location = new System.Drawing.Point(3, 9);
+            this.cbTKSTC.Name = "cbTKSTC";
+            this.cbTKSTC.Size = new System.Drawing.Size(93, 23);
+            this.cbTKSTC.TabIndex = 2;
             // 
-            // textBox1
+            // txtSearchTC
             // 
-            this.textBox1.Location = new System.Drawing.Point(100, 9);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(347, 23);
-            this.textBox1.TabIndex = 1;
+            this.txtSearchTC.Location = new System.Drawing.Point(100, 9);
+            this.txtSearchTC.Name = "txtSearchTC";
+            this.txtSearchTC.Size = new System.Drawing.Size(347, 23);
+            this.txtSearchTC.TabIndex = 1;
+            this.txtSearchTC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchTC_KeyDown);
             // 
             // tpQLDM
             // 
@@ -582,6 +586,7 @@ namespace DoAnLTWF_Code
             this.btnThemSach.TabIndex = 3;
             this.btnThemSach.Text = "Thêm";
             this.btnThemSach.UseVisualStyleBackColor = true;
+            this.btnThemSach.Click += new System.EventHandler(this.btnThemSach_Click);
             // 
             // btnSuaSach
             // 
@@ -712,7 +717,6 @@ namespace DoAnLTWF_Code
             this.pnInfoSach.Padding = new System.Windows.Forms.Padding(10);
             this.pnInfoSach.Size = new System.Drawing.Size(631, 223);
             this.pnInfoSach.TabIndex = 0;
-            this.pnInfoSach.Paint += new System.Windows.Forms.PaintEventHandler(this.pnContentThonTin_Paint);
             // 
             // txtIdSach
             // 
@@ -1112,8 +1116,9 @@ namespace DoAnLTWF_Code
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 29);
             this.button6.TabIndex = 3;
-            this.button6.Text = "Xóa";
+            this.button6.Text = "Tìm lại";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // btnSearchUser
             // 
@@ -1221,7 +1226,7 @@ namespace DoAnLTWF_Code
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(100, 33);
             this.label14.TabIndex = 0;
-            this.label14.Text = "idThe :";
+            this.label14.Text = "Số thẻ :";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel41
@@ -1581,7 +1586,7 @@ namespace DoAnLTWF_Code
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 33);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Mã độc giả :";
+            this.label3.Text = "Mã thành viên :";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbObject
@@ -1742,7 +1747,6 @@ namespace DoAnLTWF_Code
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -1786,21 +1790,27 @@ namespace DoAnLTWF_Code
             // 
             // btnXuatDST
             // 
-            this.btnXuatDST.Location = new System.Drawing.Point(710, 524);
+            this.btnXuatDST.Image = global::DoAnLTWF_Code.Properties.Resources.excel;
+            this.btnXuatDST.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnXuatDST.Location = new System.Drawing.Point(1013, 524);
             this.btnXuatDST.Name = "btnXuatDST";
-            this.btnXuatDST.Size = new System.Drawing.Size(110, 23);
+            this.btnXuatDST.Size = new System.Drawing.Size(118, 23);
             this.btnXuatDST.TabIndex = 3;
             this.btnXuatDST.Text = "Xuất File Excel";
+            this.btnXuatDST.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnXuatDST.UseVisualStyleBackColor = true;
             this.btnXuatDST.Click += new System.EventHandler(this.btnXuatDST_Click);
             // 
             // btnXuatDSM
             // 
+            this.btnXuatDSM.Image = global::DoAnLTWF_Code.Properties.Resources.excel;
+            this.btnXuatDSM.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnXuatDSM.Location = new System.Drawing.Point(47, 524);
             this.btnXuatDSM.Name = "btnXuatDSM";
-            this.btnXuatDSM.Size = new System.Drawing.Size(110, 23);
+            this.btnXuatDSM.Size = new System.Drawing.Size(119, 23);
             this.btnXuatDSM.TabIndex = 2;
             this.btnXuatDSM.Text = "Xuất File Excel";
+            this.btnXuatDSM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnXuatDSM.UseVisualStyleBackColor = true;
             this.btnXuatDSM.Click += new System.EventHandler(this.btnXuatDSM_Click);
             // 
@@ -1810,10 +1820,10 @@ namespace DoAnLTWF_Code
             this.dtgvTKT.AllowUserToDeleteRows = false;
             this.dtgvTKT.AllowUserToOrderColumns = true;
             this.dtgvTKT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvTKT.Location = new System.Drawing.Point(538, 6);
+            this.dtgvTKT.Location = new System.Drawing.Point(616, 6);
             this.dtgvTKT.Name = "dtgvTKT";
             this.dtgvTKT.RowTemplate.Height = 25;
-            this.dtgvTKT.Size = new System.Drawing.Size(421, 409);
+            this.dtgvTKT.Size = new System.Drawing.Size(559, 512);
             this.dtgvTKT.TabIndex = 1;
             this.dtgvTKT.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -1823,10 +1833,10 @@ namespace DoAnLTWF_Code
             this.dtgvTKM.AllowUserToDeleteRows = false;
             this.dtgvTKM.AllowUserToOrderColumns = true;
             this.dtgvTKM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvTKM.Location = new System.Drawing.Point(47, 17);
+            this.dtgvTKM.Location = new System.Drawing.Point(3, 6);
             this.dtgvTKM.Name = "dtgvTKM";
             this.dtgvTKM.RowTemplate.Height = 25;
-            this.dtgvTKM.Size = new System.Drawing.Size(445, 398);
+            this.dtgvTKM.Size = new System.Drawing.Size(580, 512);
             this.dtgvTKM.TabIndex = 0;
             // 
             // panel16
@@ -1917,16 +1927,6 @@ namespace DoAnLTWF_Code
             this.cbTKNgay.Name = "cbTKNgay";
             this.cbTKNgay.Size = new System.Drawing.Size(39, 23);
             this.cbTKNgay.TabIndex = 0;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1184, 610);
-            this.tabPage3.TabIndex = 1;
-            this.tabPage3.Text = "Thống kê yêu cầu sách";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // TLYC
             // 
@@ -2431,9 +2431,8 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.FlowLayoutPanel flpnSach;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel pnTimKiem;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbTKSTC;
+        private System.Windows.Forms.TextBox txtSearchTC;
         private System.Windows.Forms.TabPage tpQLDM;
         private System.Windows.Forms.Panel pnQuanLySach;
         private System.Windows.Forms.Panel pnSachVaTheLoai;
@@ -2574,7 +2573,6 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox cbTKNgay;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage TLYC;
         private System.Windows.Forms.Panel panel34;
         private System.Windows.Forms.Button button1;
@@ -2611,5 +2609,6 @@ namespace DoAnLTWF_Code
         private System.Windows.Forms.Button btnXuatDSM;
         private System.Windows.Forms.DataGridView dtgvTKT;
         private System.Windows.Forms.Button btnXuatDST;
+        private System.Windows.Forms.Button btnTKTC;
     }
 }
