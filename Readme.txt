@@ -1,0 +1,1 @@
+- Gán lại chuỗi kết nối (connection string) gán vào file _variable.cs
